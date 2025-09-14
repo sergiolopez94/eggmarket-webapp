@@ -8,8 +8,8 @@ Simple webapp for egg market operations: document management, sales orders, rout
 
 - **Framework**: Next.js (ShipFa.st boilerplate)
 - **UI**: ShadCN components
-- **Database**: Supabase
-- **Auth**: NextAuth
+- **Database**: Supabase PostgreSQL
+- **Authentication**: Supabase Auth with Google SSO
 - **PDF Processing**: Unstract (later phase)
 
 ## 3. Core Features
@@ -76,12 +76,36 @@ route_orders: id, route_id, order_id, truck_number, sequence
 **Salesperson**: Create/edit orders, view products, basic route planning
 **Viewer**: Read-only access to orders and documents
 
+## 4.5. Authentication & Authorization
+
+### Google SSO with Supabase Auth
+- **Provider**: Google OAuth 2.0 via Supabase Auth
+- **Flow**: Users sign in with Google account, first-time users get default "viewer" role
+- **Admin Approval**: Admins can upgrade user roles after first sign-in
+- **Session Management**: Supabase handles JWT tokens and session refresh
+- **Company Assignment**: Users assigned to company during admin approval process
+
+### Authentication Flow
+1. User clicks "Sign in with Google"
+2. Google OAuth flow via Supabase Auth
+3. On first sign-in: User created with "viewer" role, no company assignment
+4. Admin receives notification of new user signup
+5. Admin assigns user to company and appropriate role
+6. User gains access to company-specific features
+
+### Row Level Security (RLS)
+- All database tables use RLS policies
+- Users can only access data for their assigned company
+- Role-based permissions enforced at database level
+- Admins can access cross-company data for user management
+
 ## 5. Implementation Plan
 
 ### Phase 1: Setup (Weeks 1-2)
-- ShipFa.st installation + GitHub setup
-- Supabase database + auth
-- Basic UI with ShadCN
+- ShipFa.st installation + GitHub setup ✅
+- Supabase project + Google SSO setup
+- User authentication with role management
+- Basic UI with ShadCN ✅
 
 ### Phase 2: Core Features (Weeks 3-6)
 - User management and role system
