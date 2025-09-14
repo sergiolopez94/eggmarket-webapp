@@ -1,76 +1,137 @@
-@import "tailwindcss";
-@plugin "daisyui" {
-  themes: light --default;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Neutral color palette */
+    --background: 0 0% 100%; /* neutral-25 #FFFFFF */
+    --foreground: 210 4% 22%; /* neutral-800 #37393D */
+
+    /* Blue accent palette */
+    --primary: 210 89% 49%; /* blue-500 #0F85E4 */
+    --primary-foreground: 0 0% 100%; /* white on blue */
+
+    --secondary: 210 4% 91%; /* neutral-50 #E7E8E8 */
+    --secondary-foreground: 210 4% 22%; /* neutral-800 */
+
+    --accent: 210 81% 61%; /* blue-400 #3195EC */
+    --accent-foreground: 210 50% 15%; /* blue-950 #0C2147 */
+
+    --muted: 210 4% 91%; /* neutral-50 #E7E8E8 */
+    --muted-foreground: 210 4% 41%; /* neutral-500 #686F80 */
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 210 4% 82%; /* neutral-100 #CFD0D2 */
+    --input: 210 4% 82%; /* neutral-100 #CFD0D2 */
+    --ring: 210 89% 49%; /* blue-500 #0F85E4 */
+
+    --card: 0 0% 100%; /* neutral-25 #FFFFFF */
+    --card-foreground: 210 4% 22%; /* neutral-800 #37393D */
+
+    --popover: 0 0% 100%; /* neutral-25 #FFFFFF */
+    --popover-foreground: 210 4% 22%; /* neutral-800 #37393D */
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 210 4% 7%; /* neutral-950 #131314 */
+    --foreground: 210 4% 91%; /* neutral-50 #E7E8E8 */
+
+    --primary: 210 89% 49%; /* blue-500 #0F85E4 */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 4% 15%; /* neutral-900 #252628 */
+    --secondary-foreground: 210 4% 91%; /* neutral-50 */
+
+    --accent: 210 81% 61%; /* blue-400 #3195EC */
+    --accent-foreground: 210 4% 91%; /* neutral-50 */
+
+    --muted: 210 4% 15%; /* neutral-900 #252628 */
+    --muted-foreground: 210 4% 51%; /* neutral-400 #818795 */
+
+    --destructive: 0 62% 55%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 210 4% 29%; /* neutral-700 #484B53 */
+    --input: 210 4% 29%; /* neutral-700 #484B53 */
+    --ring: 210 89% 49%; /* blue-500 #0F85E4 */
+
+    --card: 210 4% 7%; /* neutral-950 #131314 */
+    --card-foreground: 210 4% 91%; /* neutral-50 #E7E8E8 */
+
+    --popover: 210 4% 7%; /* neutral-950 #131314 */
+    --popover-foreground: 210 4% 91%; /* neutral-50 #E7E8E8 */
+  }
 }
 
-@theme {
-  --font-display: "Satoshi", "sans-serif";
-  
-  --animate-shimmer: shimmer 3s ease-out infinite alternate;
-  --animate-opacity: opacity 0.25s ease-in-out;
-  --animate-appearFromRight: appearFromRight 300ms ease-in-out;
-  --animate-wiggle: wiggle 1.5s ease-in-out infinite;
-  --animate-popup: popup 0.25s ease-in-out;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    scroll-behavior: smooth;
+  }
+}
+
+/* Custom business app styles */
+@layer components {
+  /* Role indicator styles */
+  .role-admin {
+    @apply bg-blue-700 text-white;
+  }
+  .role-manager {
+    @apply bg-blue-500 text-white;
+  }
+  .role-salesperson {
+    @apply bg-blue-400 text-white;
+  }
+  .role-viewer {
+    @apply bg-neutral-500 text-white;
+  }
+
+  /* Business card styles */
+  .business-card {
+    @apply bg-card border border-border rounded-lg p-6 shadow-sm;
+  }
+
+  /* Form styles */
+  .form-section {
+    @apply space-y-4 p-6 bg-card border border-border rounded-lg;
+  }
+
+  /* Status indicators */
+  .status-draft {
+    @apply bg-neutral-100 text-neutral-700 border-neutral-200;
+  }
+  .status-pending {
+    @apply bg-blue-50 text-blue-700 border-blue-200;
+  }
+  .status-confirmed {
+    @apply bg-green-50 text-green-700 border-green-200;
+  }
+  .status-shipped {
+    @apply bg-purple-50 text-purple-700 border-purple-200;
+  }
+  .status-delivered {
+    @apply bg-emerald-50 text-emerald-700 border-emerald-200;
+  }
+}
+
+/* Custom animations */
+@layer utilities {
+  .animate-shimmer {
+    animation: shimmer 3s ease-out infinite alternate;
+    background-size: 300% 300%;
+  }
 
   @keyframes shimmer {
     0% { background-position: 0 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
   }
-
-  @keyframes opacity {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-  }
-
-  @keyframes appearFromRight {
-    0% { opacity: 0.3; transform: translate(15%, 0px); }
-    100% { opacity: 1; transform: translate(0); }
-  }
-
-  @keyframes wiggle {
-    0%, 20%, 80%, 100% { transform: rotate(0deg); }
-    30%, 60% { transform: rotate(-2deg); }
-    40%, 70% { transform: rotate(2deg); }
-    45% { transform: rotate(-4deg); }
-    55% { transform: rotate(4deg); }
-  }
-
-  @keyframes popup {
-    0% { transform: scale(0.8); opacity: 0.8; }
-    50% { transform: scale(1.1); opacity: 1; }
-    100% { transform: scale(1); opacity: 1; }
-  }
-}
-
-html,
-body {
-  scroll-behavior: smooth !important;
-}
-
-progress::-webkit-progress-value {
-  transition: 0.6s width ease-out;
-}
-
-.btn-gradient {
-  background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82) !important;
-  background-size: 300% 300% !important;
-  animation: var(--animate-shimmer) !important;
-  border: 0 !important;
-  border-color: transparent !important;
-  color: white !important;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1) !important;
-}
-
-.btn-gradient:hover {
-  filter: saturate(1.2) !important;
-}
-
-.btn-gradient:disabled {
-  background: rgb(107 114 128 / 0.3) !important;
-  color: rgb(156 163 175) !important;
-}
-
-.btn {
-  text-transform: capitalize !important;
 }

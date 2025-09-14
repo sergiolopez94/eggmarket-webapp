@@ -1,0 +1,79 @@
+{
+  "theme": {
+    "name": "Egg Market Business Theme",
+    "description": "Professional neutral base with blue accents for internal business application",
+    "primary": "Blue",
+    "secondary": "Neutral"
+  },
+  "colors": {
+    "Neutral": {
+      "description": "Primary neutral colors for backgrounds, text, and base UI elements",
+      "shades": [
+        { "name": "25", "hex": "#FFFFFF", "usage": "Pure white backgrounds, cards" },
+        { "name": "50", "hex": "#E7E8E8", "usage": "Light gray backgrounds" },
+        { "name": "100", "hex": "#CFD0D2", "usage": "Subtle borders, disabled states" },
+        { "name": "200", "hex": "#B6B8BD", "usage": "Placeholder text, light borders" },
+        { "name": "300", "hex": "#9CA0A9", "usage": "Secondary text, inactive states" },
+        { "name": "400", "hex": "#818795", "usage": "Helper text, icons" },
+        { "name": "500", "hex": "#686F80", "usage": "Body text, default text" },
+        { "name": "600", "hex": "#585D69", "usage": "Headings, important text" },
+        { "name": "700", "hex": "#484B53", "usage": "Dark headings, emphasis" },
+        { "name": "800", "hex": "#37393D", "usage": "High contrast text" },
+        { "name": "900", "hex": "#252628", "usage": "Maximum contrast text" },
+        { "name": "950", "hex": "#131314", "usage": "Near black, highest contrast" }
+      ]
+    },
+    "Blue": {
+      "description": "Accent colors for actions, links, highlights, and interactive elements",
+      "shades": [
+        { "name": "25", "hex": "#F3F7FC", "usage": "Light blue background, info alerts" },
+        { "name": "50", "hex": "#D0E1F5", "usage": "Very light blue backgrounds" },
+        { "name": "100", "hex": "#ABC0F0", "usage": "Light blue for badges, tags" },
+        { "name": "200", "hex": "#84A8ED", "usage": "Soft blue for secondary buttons" },
+        { "name": "300", "hex": "#5CA6EB", "usage": "Medium blue for hover states" },
+        { "name": "400", "hex": "#3195EC", "usage": "Active blue, selected states" },
+        { "name": "500", "hex": "#0F85E4", "usage": "Primary blue for main actions, links" },
+        { "name": "600", "hex": "#106CC3", "usage": "Darker blue for hover on primary" },
+        { "name": "700", "hex": "#1156A2", "usage": "Dark blue for pressed states" },
+        { "name": "800", "hex": "#104283", "usage": "Very dark blue accents" },
+        { "name": "900", "hex": "#0E3065", "usage": "Deep blue for emphasis" },
+        { "name": "950", "hex": "#0C2147", "usage": "Darkest blue for high contrast" }
+      ]
+    }
+  },
+  "usage_guidelines": {
+    "primary_actions": "Blue-500 (#0F85E4) - buttons, links, call-to-actions",
+    "secondary_actions": "Neutral-600 (#585D69) with Blue accent on hover",
+    "backgrounds": {
+      "page": "Neutral-25 (#FFFFFF)",
+      "cards": "Neutral-25 (#FFFFFF) with Neutral-100 borders",
+      "sidebar": "Neutral-50 (#E7E8E8)",
+      "header": "Neutral-25 (#FFFFFF) with Blue-500 accents"
+    },
+    "text": {
+      "primary": "Neutral-800 (#37393D)",
+      "secondary": "Neutral-600 (#585D69)",
+      "muted": "Neutral-400 (#818795)",
+      "links": "Blue-500 (#0F85E4)",
+      "success": "Green variant of Blue-600",
+      "error": "Red variant of Blue-600",
+      "warning": "Orange variant of Blue-500"
+    },
+    "role_indicators": {
+      "admin": "Blue-700 (#1156A2)",
+      "manager": "Blue-500 (#0F85E4)",
+      "salesperson": "Blue-400 (#3195EC)",
+      "viewer": "Neutral-500 (#686F80)"
+    }
+  },
+  "tailwind_variables": {
+    "primary": "rgb(15, 133, 228)",
+    "primary-foreground": "rgb(255, 255, 255)",
+    "secondary": "rgb(231, 232, 232)",
+    "secondary-foreground": "rgb(55, 57, 61)",
+    "accent": "rgb(60, 166, 235)",
+    "accent-foreground": "rgb(12, 33, 71)",
+    "muted": "rgb(231, 232, 232)",
+    "muted-foreground": "rgb(104, 111, 128)"
+  }
+}
