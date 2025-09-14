@@ -1,0 +1,169 @@
+[
+  {
+    "collection": "AdjustmentReasons",
+    "docs_url": "https://cloudapi.inflowinventory.com/docs/index.html#/Adjustment%20reasons",
+    "endpoints": [
+      { "method": "GET", "path": "/{companyId}/adjustment-reasons" },
+      { "method": "GET", "path": "/{companyId}/adjustment-reasons/{adjustmentReasonId}" }
+    ]
+  },
+  {
+    "collection": "Categories",
+    "docs_url": "https://cloudapi.inflowinventory.com/docs/index.html#/Categories",
+    "endpoints": [
+      { "method": "GET", "path": "/{companyId}/categories" },
+      { "method": "GET", "path": "/{companyId}/categories/{categoryId}" }
+    ]
+  },
+  {
+    "collection": "Currencies",
+    "docs_url": "https://cloudapi.inflowinventory.com/docs/index.html#/Currencies",
+    "endpoints": [
+      { "method": "GET", "path": "/{companyId}/currencies" },
+      { "method": "GET", "path": "/{companyId}/currencies/{currencyId}" }
+    ]
+  },
+  {
+    "collection": "Customers",
+    "docs_url": "https://cloudapi.inflowinventory.com/docs/index.html#/Customers",
+    "endpoints": [
+      { "method": "GET", "path": "/{companyId}/customers" },
+      { "method": "GET", "path": "/{companyId}/customers/{customerId}" },
+      { "method": "POST", "path": "/{companyId}/customers" },
+      { "method": "PATCH", "path": "/{companyId}/customers/{customerId}" },
+      { "method": "DELETE", "path": "/{companyId}/customers/{customerId}" }
+    ]
+  },
+  {
+    "collection": "Locations",
+    "docs_url": "https://cloudapi.inflowinventory.com/docs/index.html#/Locations",
+    "endpoints": [
+      { "method": "GET", "path": "/{companyId}/locations" },
+      { "method": "GET", "path": "/{companyId}/locations/{locationId}" }
+    ]
+  },
+  {
+    "collection": "OperationTypes",
+    "docs_url": "https://cloudapi.inflowinventory.com/docs/index.html#/Operation%20types",
+    "endpoints": [
+      { "method": "GET", "path": "/{companyId}/operation-types" },
+      { "method": "GET", "path": "/{companyId}/operation-types/{operationTypeId}" }
+    ]
+  },
+  {
+    "collection": "PaymentTerms",
+    "docs_url": "https://cloudapi.inflowinventory.com/docs/index.html#/Payment%20terms",
+    "endpoints": [
+      { "method": "GET", "path": "/{companyId}/payment-terms" },
+      { "method": "GET", "path": "/{companyId}/payment-terms/{paymentTermId}" }
+    ]
+  },
+  {
+    "collection": "PricingSchemes",
+    "docs_url": "https://cloudapi.inflowinventory.com/docs/index.html#/Pricing%20schemes",
+    "endpoints": [
+      { "method": "GET", "path": "/{companyId}/pricing-schemes" },
+      { "method": "GET", "path": "/{companyId}/pricing-schemes/{pricingSchemeId}" }
+    ]
+  },
+  {
+    "collection": "Products",
+    "docs_url": "https://cloudapi.inflowinventory.com/docs/index.html#/Products",
+    "endpoints": [
+      { "method": "GET", "path": "/{companyId}/products" },
+      { "method": "GET", "path": "/{companyId}/products/{productId}" },
+      { "method": "POST", "path": "/{companyId}/products" },
+      { "method": "PATCH", "path": "/{companyId}/products/{productId}" },
+      { "method": "DELETE", "path": "/{companyId}/products/{productId}" }
+    ]
+  },
+  {
+    "collection": "ProductCostAdjustments",
+    "docs_url": "https://cloudapi.inflowinventory.com/docs/index.html#/Product%20cost%20adjustments",
+    "endpoints": [
+      { "method": "GET", "path": "/{companyId}/product-cost-adjustments" },
+      { "method": "GET", "path": "/{companyId}/product-cost-adjustments/{productCostAdjustmentId}" }
+    ]
+  },
+  {
+    "collection": "PurchaseOrders",
+    "docs_url": "https://cloudapi.inflowinventory.com/docs/index.html#/Purchase%20orders",
+    "endpoints": [
+      { "method": "GET", "path": "/{companyId}/purchase-orders" },
+      { "method": "GET", "path": "/{companyId}/purchase-orders/{purchaseOrderId}" },
+      { "method": "POST", "path": "/{companyId}/purchase-orders" },
+      { "method": "PATCH", "path": "/{companyId}/purchase-orders/{purchaseOrderId}" },
+      { "method": "DELETE", "path": "/{companyId}/purchase-orders/{purchaseOrderId}" }
+    ]
+  },
+  {
+    "collection": "SalesOrders",
+    "docs_url": "https://cloudapi.inflowinventory.com/docs/index.html#/Sales%20orders",
+    "endpoints": [
+      { "method": "GET", "path": "/{companyId}/sales-orders" },
+      { "method": "GET", "path": "/{companyId}/sales-orders/{salesOrderId}" },
+      { "method": "POST", "path": "/{companyId}/sales-orders" },
+      { "method": "PATCH", "path": "/{companyId}/sales-orders/{salesOrderId}" },
+      { "method": "DELETE", "path": "/{companyId}/sales-orders/{salesOrderId}" }
+    ]
+  },
+  {
+    "collection": "StockAdjustments",
+    "docs_url": "https://cloudapi.inflowinventory.com/docs/index.html#/Stock%20adjustments",
+    "endpoints": [
+      { "method": "GET", "path": "/{companyId}/stock-adjustments" },
+      { "method": "GET", "path": "/{companyId}/stock-adjustments/{stockAdjustmentId}" }
+    ]
+  },
+  {
+    "collection": "StockCounts",
+    "docs_url": "https://cloudapi.inflowinventory.com/docs/index.html#/Stock%20counts",
+    "endpoints": [
+      { "method": "GET", "path": "/{companyId}/stock-counts" },
+      { "method": "GET", "path": "/{companyId}/stock-counts/{stockCountId}" }
+    ]
+  },
+  {
+    "collection": "StockTransfers",
+    "docs_url": "https://cloudapi.inflowinventory.com/docs/index.html#/Stock%20transfers",
+    "endpoints": [
+      { "method": "GET", "path": "/{companyId}/stock-transfers" },
+      { "method": "GET", "path": "/{companyId}/stock-transfers/{stockTransferId}" }
+    ]
+  },
+  {
+    "collection": "TaxCodes",
+    "docs_url": "https://cloudapi.inflowinventory.com/docs/index.html#/Tax%20codes",
+    "endpoints": [
+      { "method": "GET", "path": "/{companyId}/tax-codes" },
+      { "method": "GET", "path": "/{companyId}/tax-codes/{taxCodeId}" }
+    ]
+  },
+  {
+    "collection": "TaxingSchemes",
+    "docs_url": "https://cloudapi.inflowinventory.com/docs/index.html#/Taxing%20schemes",
+    "endpoints": [
+      { "method": "GET", "path": "/{companyId}/taxing-schemes" },
+      { "method": "GET", "path": "/{companyId}/taxing-schemes/{taxingSchemeId}" }
+    ]
+  },
+  {
+    "collection": "TeamMembers",
+    "docs_url": "https://cloudapi.inflowinventory.com/docs/index.html#/Team%20members",
+    "endpoints": [
+      { "method": "GET", "path": "/{companyId}/team-members" },
+      { "method": "GET", "path": "/{companyId}/team-members/{teamMemberId}" }
+    ]
+  },
+  {
+    "collection": "Vendors",
+    "docs_url": "https://cloudapi.inflowinventory.com/docs/index.html#/Vendors",
+    "endpoints": [
+      { "method": "GET", "path": "/{companyId}/vendors" },
+      { "method": "GET", "path": "/{companyId}/vendors/{vendorId}" },
+      { "method": "POST", "path": "/{companyId}/vendors" },
+      { "method": "PATCH", "path": "/{companyId}/vendors/{vendorId}" },
+      { "method": "DELETE", "path": "/{companyId}/vendors/{vendorId}" }
+    ]
+  }
+]

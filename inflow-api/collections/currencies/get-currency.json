@@ -1,0 +1,11 @@
+{
+  "endpoint": "get-currency",
+  "description": "Get a specific currency",
+  "method": "GET",
+  "path": "/{{company_id}}/currencies/{{currencyId}}",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true },
+    { "name": "currencyId", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include"]
+}

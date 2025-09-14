@@ -1,0 +1,12 @@
+{
+  "endpoint": "update-purchase-order",
+  "description": "Update an existing purchase order",
+  "method": "PATCH",
+  "path": "/{{company_id}}/purchase-orders/{{purchaseOrderId}}",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true },
+    { "name": "purchaseOrderId", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include"],
+  "body_required": true
+}

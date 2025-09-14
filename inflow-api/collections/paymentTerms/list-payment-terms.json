@@ -1,0 +1,10 @@
+{
+  "endpoint": "list-payment-terms",
+  "description": "List all payment terms",
+  "method": "GET",
+  "path": "/{{company_id}}/payment-terms",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include", "filter", "sort", "page", "limit"]
+}

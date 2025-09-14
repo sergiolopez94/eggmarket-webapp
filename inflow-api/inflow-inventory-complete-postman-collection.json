@@ -1,0 +1,2529 @@
+{
+  "info": {
+    "_postman_id": "8f548f36-3191-4d74-9524-7c07591ffde4",
+    "name": "Inflow Inventory API - Complete Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Complete collection of all Inflow Inventory API endpoints organized by resource type."
+  },
+  "item": [
+    {
+      "name": "Adjustment Reasons",
+      "item": [
+        {
+          "name": "List Adjustment Reasons",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/adjustment-reasons",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "adjustment-reasons"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "filter",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Adjustment Reason",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/adjustment-reasons/{{adjustmentReasonId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "adjustment-reasons",
+                "{{adjustmentReasonId}}"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Categories",
+      "item": [
+        {
+          "name": "List Categories",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/categories",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "categories"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "filter",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Categorie",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/categories/{{categoryId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "categories",
+                "{{categoryId}}"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Currencies",
+      "item": [
+        {
+          "name": "List Currencies",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/currencies",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "currencies"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "filter",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Currencie",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/currencies/{{currencyId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "currencies",
+                "{{currencyId}}"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Customers",
+      "item": [
+        {
+          "name": "List Customers",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/customers",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "customers"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "filter",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Customer",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/customers/{{customerId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "customers",
+                "{{customerId}}"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Customer",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/customers",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "customers"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Customer Name\",\n  \"email\": \"customer@example.com\",\n  \"phone\": \"+1234567890\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Customer",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/customers/{{customerId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "customers",
+                "{{customerId}}"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Customer Name\",\n  \"email\": \"customer@example.com\",\n  \"phone\": \"+1234567890\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Customer",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/customers/{{customerId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "customers",
+                "{{customerId}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Locations",
+      "item": [
+        {
+          "name": "List Locations",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/locations",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "locations"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "filter",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Location",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/locations/{{locationId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "locations",
+                "{{locationId}}"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Operation Types",
+      "item": [
+        {
+          "name": "List Operation Types",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/operation-types",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "operation-types"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "filter",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Operation Type",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/operation-types/{{operationTypeId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "operation-types",
+                "{{operationTypeId}}"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payment Terms",
+      "item": [
+        {
+          "name": "List Payment Terms",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/payment-terms",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "payment-terms"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "filter",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Payment Term",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/payment-terms/{{paymentTermId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "payment-terms",
+                "{{paymentTermId}}"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pricing Schemes",
+      "item": [
+        {
+          "name": "List Pricing Schemes",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/pricing-schemes",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "pricing-schemes"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "filter",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Pricing Scheme",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/pricing-schemes/{{pricingSchemeId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "pricing-schemes",
+                "{{pricingSchemeId}}"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "List Products",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/products",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "filter",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Product",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/products/{{productId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "products",
+                "{{productId}}"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Product",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/products",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Product Name\",\n  \"sku\": \"PROD-001\",\n  \"description\": \"Product description\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Product",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/products/{{productId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "products",
+                "{{productId}}"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Product Name\",\n  \"sku\": \"PROD-001\",\n  \"description\": \"Product description\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Product",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/products/{{productId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "products",
+                "{{productId}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Product Cost Adjustments",
+      "item": [
+        {
+          "name": "List Product Cost Adjustments",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/product-cost-adjustments",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "product-cost-adjustments"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "filter",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Product Cost Adjustment",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/product-cost-adjustments/{{productCostAdjustmentId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "product-cost-adjustments",
+                "{{productCostAdjustmentId}}"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Purchase Orders",
+      "item": [
+        {
+          "name": "List Purchase Orders",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/purchase-orders",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "purchase-orders"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "filter",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Purchase Order",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/purchase-orders/{{purchaseOrderId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "purchase-orders",
+                "{{purchaseOrderId}}"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Purchase Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/purchase-orders",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "purchase-orders"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vendorId\": \"{{vendorId}}\",\n  \"orderDate\": \"2023-01-01\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Purchase Order",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/purchase-orders/{{purchaseOrderId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "purchase-orders",
+                "{{purchaseOrderId}}"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vendorId\": \"{{vendorId}}\",\n  \"orderDate\": \"2023-01-01\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Purchase Order",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/purchase-orders/{{purchaseOrderId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "purchase-orders",
+                "{{purchaseOrderId}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sales Orders",
+      "item": [
+        {
+          "name": "List Sales Orders",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/sales-orders",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "sales-orders"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "filter",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Sales Order",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/sales-orders/{{salesOrderId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "sales-orders",
+                "{{salesOrderId}}"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Sales Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/sales-orders",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "sales-orders"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": \"{{customerId}}\",\n  \"orderDate\": \"2023-01-01\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Sales Order",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/sales-orders/{{salesOrderId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "sales-orders",
+                "{{salesOrderId}}"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": \"{{customerId}}\",\n  \"orderDate\": \"2023-01-01\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Sales Order",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/sales-orders/{{salesOrderId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "sales-orders",
+                "{{salesOrderId}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Stock Adjustments",
+      "item": [
+        {
+          "name": "List Stock Adjustments",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/stock-adjustments",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "stock-adjustments"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "filter",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Stock Adjustment",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/stock-adjustments/{{stockAdjustmentId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "stock-adjustments",
+                "{{stockAdjustmentId}}"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Stock Counts",
+      "item": [
+        {
+          "name": "List Stock Counts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/stock-counts",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "stock-counts"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "filter",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Stock Count",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/stock-counts/{{stockCountId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "stock-counts",
+                "{{stockCountId}}"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Stock Transfers",
+      "item": [
+        {
+          "name": "List Stock Transfers",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/stock-transfers",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "stock-transfers"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "filter",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Stock Transfer",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/stock-transfers/{{stockTransferId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "stock-transfers",
+                "{{stockTransferId}}"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tax Codes",
+      "item": [
+        {
+          "name": "List Tax Codes",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/tax-codes",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "tax-codes"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "filter",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Tax Code",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/tax-codes/{{taxCodeId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "tax-codes",
+                "{{taxCodeId}}"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Taxing Schemes",
+      "item": [
+        {
+          "name": "List Taxing Schemes",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/taxing-schemes",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "taxing-schemes"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "filter",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Taxing Scheme",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/taxing-schemes/{{taxingSchemeId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "taxing-schemes",
+                "{{taxingSchemeId}}"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Team Members",
+      "item": [
+        {
+          "name": "List Team Members",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/team-members",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "team-members"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "filter",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Team Member",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/team-members/{{teamMemberId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "team-members",
+                "{{teamMemberId}}"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Vendors",
+      "item": [
+        {
+          "name": "List Vendors",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/vendors",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "vendors"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "filter",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Vendor",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/vendors/{{vendorId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "vendors",
+                "{{vendorId}}"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Vendor",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/vendors",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "vendors"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Vendor Name\",\n  \"email\": \"vendor@example.com\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Vendor",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/vendors/{{vendorId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "vendors",
+                "{{vendorId}}"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Vendor Name\",\n  \"email\": \"vendor@example.com\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Vendor",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{API_KEY}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;version=2025-06-24"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/{{company_id}}/vendors/{{vendorId}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{company_id}}",
+                "vendors",
+                "{{vendorId}}"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{API_KEY}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://cloudapi.inflowinventory.com",
+      "type": "string"
+    },
+    {
+      "key": "API_KEY",
+      "value": "YOUR_API_KEY_HERE",
+      "type": "string"
+    },
+    {
+      "key": "company_id",
+      "value": "YOUR_COMPANY_ID_HERE",
+      "type": "string"
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

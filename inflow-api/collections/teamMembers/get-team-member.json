@@ -1,0 +1,11 @@
+{
+  "endpoint": "get-team-member",
+  "description": "Get a specific team member",
+  "method": "GET",
+  "path": "/{{company_id}}/team-members/{{teamMemberId}}",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true },
+    { "name": "teamMemberId", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include"]
+}

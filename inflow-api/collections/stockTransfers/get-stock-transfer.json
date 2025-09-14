@@ -1,0 +1,11 @@
+{
+  "endpoint": "get-stock-transfer",
+  "description": "Get a specific stock transfer",
+  "method": "GET",
+  "path": "/{{company_id}}/stock-transfers/{{stockTransferId}}",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true },
+    { "name": "stockTransferId", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include"]
+}

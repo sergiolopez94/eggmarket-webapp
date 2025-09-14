@@ -1,0 +1,11 @@
+{
+  "endpoint": "get-payment-term",
+  "description": "Get a specific payment term",
+  "method": "GET",
+  "path": "/{{company_id}}/payment-terms/{{paymentTermId}}",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true },
+    { "name": "paymentTermId", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include"]
+}

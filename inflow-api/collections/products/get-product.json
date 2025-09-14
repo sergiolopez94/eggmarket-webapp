@@ -1,0 +1,11 @@
+{
+  "endpoint": "get-product",
+  "description": "Get a specific product",
+  "method": "GET",
+  "path": "/{{company_id}}/products/{{productId}}",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true },
+    { "name": "productId", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include"]
+}

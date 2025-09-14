@@ -1,0 +1,10 @@
+{
+  "endpoint": "list-product-cost-adjustments",
+  "description": "List all product cost adjustments",
+  "method": "GET",
+  "path": "/{{company_id}}/product-cost-adjustments",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include", "filter", "sort", "page", "limit"]
+}

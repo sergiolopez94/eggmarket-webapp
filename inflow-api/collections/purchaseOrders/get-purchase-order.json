@@ -1,0 +1,11 @@
+{
+  "endpoint": "get-purchase-order",
+  "description": "Get a specific purchase order",
+  "method": "GET",
+  "path": "/{{company_id}}/purchase-orders/{{purchaseOrderId}}",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true },
+    { "name": "purchaseOrderId", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include"]
+}

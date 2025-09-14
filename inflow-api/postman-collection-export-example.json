@@ -1,0 +1,78 @@
+{
+	"info": {
+		"_postman_id": "21011357-cd1d-42f6-9299-ff726bd77fc4",
+		"name": "InFlow Customers",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29172570",
+		"_collection_link": "https://restless-trinity-766313.postman.co/workspace/InFlow~4057215b-94c2-4019-8e68-7f0a26d2c5ac/collection/29172570-21011357-cd1d-42f6-9299-ff726bd77fc4?action=share&source=collection_link&creator=29172570"
+	},
+	"item": [
+		{
+			"name": "List Customers",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer EF3465299DB03712CB4B2B063D696FA6E686D4BFC6251074D8B68479EE2FA128-1"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json;version=2025-06-24"
+					}
+				],
+				"url": {
+					"raw": "https://cloudapi.inflowinventory.com/615aa420-6a1e-47c4-9fc0-2262876126c0/customers",
+					"protocol": "https",
+					"host": [
+						"cloudapi",
+						"inflowinventory",
+						"com"
+					],
+					"path": [
+						"615aa420-6a1e-47c4-9fc0-2262876126c0",
+						"customers"
+					]
+				},
+				"description": "Generated from cURL: curl -X GET \"https://cloudapi.inflowinventory.com/615aa420-6a1e-47c4-9fc0-2262876126c0/customers\" \\\n  -H \"Authorization: Bearer EF3465299DB03712CB4B2B063D696FA6E686D4BFC6251074D8B68479EE2FA128-1\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"Accept: application/json;version=2025-06-24\"\n"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{API Key}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

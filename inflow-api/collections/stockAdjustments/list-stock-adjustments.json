@@ -1,0 +1,10 @@
+{
+  "endpoint": "list-stock-adjustments",
+  "description": "List all stock adjustments",
+  "method": "GET",
+  "path": "/{{company_id}}/stock-adjustments",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include", "filter", "sort", "page", "limit"]
+}

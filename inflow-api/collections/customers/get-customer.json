@@ -1,0 +1,11 @@
+{
+  "endpoint": "get-customer",
+  "description": "Get a specific customer",
+  "method": "GET",
+  "path": "/{{company_id}}/customers/{{customerId}}",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true },
+    { "name": "customerId", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include"]
+}

@@ -1,0 +1,11 @@
+{
+  "endpoint": "get-pricing-scheme",
+  "description": "Get a specific pricing scheme",
+  "method": "GET",
+  "path": "/{{company_id}}/pricing-schemes/{{pricingSchemeId}}",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true },
+    { "name": "pricingSchemeId", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include"]
+}

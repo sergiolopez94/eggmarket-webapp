@@ -1,0 +1,11 @@
+{
+  "endpoint": "get-stock-count",
+  "description": "Get a specific stock count",
+  "method": "GET",
+  "path": "/{{company_id}}/stock-counts/{{stockCountId}}",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true },
+    { "name": "stockCountId", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include"]
+}

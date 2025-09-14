@@ -1,0 +1,11 @@
+{
+  "endpoint": "get-vendor",
+  "description": "Get a specific vendor",
+  "method": "GET",
+  "path": "/{{company_id}}/vendors/{{vendorId}}",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true },
+    { "name": "vendorId", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include"]
+}

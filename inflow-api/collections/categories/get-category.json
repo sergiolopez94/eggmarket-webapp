@@ -1,0 +1,11 @@
+{
+  "endpoint": "get-category",
+  "description": "Get a specific product category",
+  "method": "GET",
+  "path": "/{{company_id}}/categories/{{categoryId}}",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true },
+    { "name": "categoryId", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include"]
+}

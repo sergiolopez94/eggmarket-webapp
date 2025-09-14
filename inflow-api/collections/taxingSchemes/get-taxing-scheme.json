@@ -1,0 +1,11 @@
+{
+  "endpoint": "get-taxing-scheme",
+  "description": "Get a specific taxing scheme",
+  "method": "GET",
+  "path": "/{{company_id}}/taxing-schemes/{{taxingSchemeId}}",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true },
+    { "name": "taxingSchemeId", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include"]
+}

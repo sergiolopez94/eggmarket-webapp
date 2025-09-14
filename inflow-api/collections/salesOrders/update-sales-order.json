@@ -1,0 +1,12 @@
+{
+  "endpoint": "update-sales-order",
+  "description": "Update an existing sales order",
+  "method": "PATCH",
+  "path": "/{{company_id}}/sales-orders/{{salesOrderId}}",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true },
+    { "name": "salesOrderId", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include"],
+  "body_required": true
+}

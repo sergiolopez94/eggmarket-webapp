@@ -1,0 +1,10 @@
+{
+  "endpoint": "list-vendors",
+  "description": "List all vendors",
+  "method": "GET",
+  "path": "/{{company_id}}/vendors",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include", "filter", "sort", "page", "limit"]
+}

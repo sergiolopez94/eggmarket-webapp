@@ -1,0 +1,10 @@
+{
+  "endpoint": "list-tax-codes",
+  "description": "List all tax codes",
+  "method": "GET",
+  "path": "/{{company_id}}/tax-codes",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include", "filter", "sort", "page", "limit"]
+}

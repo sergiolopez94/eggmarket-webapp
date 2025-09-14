@@ -1,0 +1,12 @@
+{
+  "endpoint": "update-vendor",
+  "description": "Update an existing vendor",
+  "method": "PATCH",
+  "path": "/{{company_id}}/vendors/{{vendorId}}",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true },
+    { "name": "vendorId", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include"],
+  "body_required": true
+}

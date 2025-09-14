@@ -1,0 +1,12 @@
+{
+  "endpoint": "update-customer",
+  "description": "Update an existing customer",
+  "method": "PATCH",
+  "path": "/{{company_id}}/customers/{{customerId}}",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true },
+    { "name": "customerId", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include"],
+  "body_required": true
+}

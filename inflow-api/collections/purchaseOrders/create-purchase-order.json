@@ -1,0 +1,11 @@
+{
+  "endpoint": "create-purchase-order",
+  "description": "Create a new purchase order",
+  "method": "POST",
+  "path": "/{{company_id}}/purchase-orders",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include"],
+  "body_required": true
+}

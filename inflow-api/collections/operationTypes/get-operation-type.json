@@ -1,0 +1,11 @@
+{
+  "endpoint": "get-operation-type",
+  "description": "Get a specific operation type",
+  "method": "GET",
+  "path": "/{{company_id}}/operation-types/{{operationTypeId}}",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true },
+    { "name": "operationTypeId", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include"]
+}

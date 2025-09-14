@@ -1,0 +1,10 @@
+{
+  "endpoint": "list-purchase-orders",
+  "description": "List all purchase orders",
+  "method": "GET",
+  "path": "/{{company_id}}/purchase-orders",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include", "filter", "sort", "page", "limit"]
+}

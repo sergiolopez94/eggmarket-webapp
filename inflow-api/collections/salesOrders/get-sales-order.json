@@ -1,0 +1,11 @@
+{
+  "endpoint": "get-sales-order",
+  "description": "Get a specific sales order",
+  "method": "GET",
+  "path": "/{{company_id}}/sales-orders/{{salesOrderId}}",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true },
+    { "name": "salesOrderId", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include"]
+}

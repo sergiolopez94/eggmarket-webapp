@@ -1,0 +1,10 @@
+{
+  "endpoint": "list-adjustment-reasons",
+  "description": "List all adjustment reasons",
+  "method": "GET",
+  "path": "/{{company_id}}/adjustment-reasons",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include", "filter", "sort", "page", "limit"]
+}

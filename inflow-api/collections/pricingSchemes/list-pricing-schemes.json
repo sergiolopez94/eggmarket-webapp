@@ -1,0 +1,10 @@
+{
+  "endpoint": "list-pricing-schemes",
+  "description": "List all pricing schemes",
+  "method": "GET",
+  "path": "/{{company_id}}/pricing-schemes",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include", "filter", "sort", "page", "limit"]
+}

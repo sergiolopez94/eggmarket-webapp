@@ -1,0 +1,21 @@
+[
+  {
+    "collection": "Customer",
+    "docs_url": "https://cloudapi.inflowinventory.com/docs/index.html#/Customers",
+    "endpoints": [
+      { "method": "GET", "path": "/{companyId}/customers" },
+      { "method": "GET", "path": "/{companyId}/customers/{customerId}" },
+      { "method": "POST", "path": "/{companyId}/customers" },
+      { "method": "PATCH", "path": "/{companyId}/customers/{customerId}" },
+      { "method": "DELETE", "path": "/{companyId}/customers/{customerId}" }
+    ]
+  },
+  {
+    "collection": "AdjustmentReason",
+    "docs_url": "https://cloudapi.inflowinventory.com/docs/index.html#/Adjustment%20reasons",
+    "endpoints": [
+      { "method": "GET", "path": "/{companyId}/adjustment-reasons" },
+      { "method": "GET", "path": "/{companyId}/adjustment-reasons/{adjustmentReasonId}" }
+    ]
+  }
+]

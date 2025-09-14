@@ -1,0 +1,10 @@
+{
+  "endpoint": "list-products",
+  "description": "List all products",
+  "method": "GET",
+  "path": "/{{company_id}}/products",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include", "filter", "sort", "page", "limit"]
+}

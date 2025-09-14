@@ -1,0 +1,11 @@
+{
+  "endpoint": "get-tax-code",
+  "description": "Get a specific tax code",
+  "method": "GET",
+  "path": "/{{company_id}}/tax-codes/{{taxCodeId}}",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true },
+    { "name": "taxCodeId", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include"]
+}

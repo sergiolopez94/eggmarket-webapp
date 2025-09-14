@@ -1,0 +1,10 @@
+{
+  "endpoint": "list-stock-transfers",
+  "description": "List all stock transfers",
+  "method": "GET",
+  "path": "/{{company_id}}/stock-transfers",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include", "filter", "sort", "page", "limit"]
+}

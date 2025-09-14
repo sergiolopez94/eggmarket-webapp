@@ -1,0 +1,11 @@
+{
+  "endpoint": "create-vendor",
+  "description": "Create a new vendor",
+  "method": "POST",
+  "path": "/{{company_id}}/vendors",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include"],
+  "body_required": true
+}

@@ -1,0 +1,11 @@
+{
+  "endpoint": "create-product",
+  "description": "Create a new product",
+  "method": "POST",
+  "path": "/{{company_id}}/products",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include"],
+  "body_required": true
+}

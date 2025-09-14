@@ -1,0 +1,11 @@
+{
+  "endpoint": "delete-sales-order",
+  "description": "Delete a sales order",
+  "method": "DELETE",
+  "path": "/{{company_id}}/sales-orders/{{salesOrderId}}",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true },
+    { "name": "salesOrderId", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": []
+}

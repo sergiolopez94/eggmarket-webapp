@@ -1,0 +1,10 @@
+{
+  "endpoint": "list-categories",
+  "description": "List all product categories",
+  "method": "GET",
+  "path": "/{{company_id}}/categories",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include", "filter", "sort", "page", "limit"]
+}

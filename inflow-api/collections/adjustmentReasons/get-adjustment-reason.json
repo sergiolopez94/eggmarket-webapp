@@ -1,0 +1,11 @@
+{
+  "endpoint": "get-adjustment-reason",
+  "description": "Get a specific adjustment reason",
+  "method": "GET",
+  "path": "/{{company_id}}/adjustment-reasons/{{adjustmentReasonId}}",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true },
+    { "name": "adjustmentReasonId", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include"]
+}

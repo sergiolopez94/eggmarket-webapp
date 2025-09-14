@@ -1,0 +1,11 @@
+{
+  "endpoint": "get-product-cost-adjustment",
+  "description": "Get a specific product cost adjustment",
+  "method": "GET",
+  "path": "/{{company_id}}/product-cost-adjustments/{{productCostAdjustmentId}}",
+  "path_params": [
+    { "name": "company_id", "type": "uuid", "required": true },
+    { "name": "productCostAdjustmentId", "type": "uuid", "required": true }
+  ],
+  "query_params_supported": ["include"]
+}
