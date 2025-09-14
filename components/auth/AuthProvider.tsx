@@ -11,7 +11,9 @@ interface AuthContextType {
   user: User | null
   profile: Profile | null
   loading: boolean
-  signInWithGoogle: () => Promise<void>
+  signInWithEmail: (email: string, password: string) => Promise<{ error: any }>
+  signUpWithEmail: (email: string, password: string, name: string) => Promise<{ error: any }>
+  signInWithGoogle: () => Promise<{ error: any }>
   signOut: () => Promise<void>
   refreshProfile: () => Promise<void>
 }
@@ -76,6 +78,27 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return () => subscription.unsubscribe()
   }, [])
 
+  const signInWithEmail = async (email: string, password: string) => {
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password
+    })
+    return { error }
+  }
+
+  const signUpWithEmail = async (email: string, password: string, name: string) => {
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          name: name
+        }
+      }
+    })
+    return { error }
+  }
+
   const signInWithGoogle = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
@@ -83,9 +106,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         redirectTo: `${window.location.origin}/dashboard`
       }
     })
-    if (error) {
-      console.error('Error signing in with Google:', error)
-    }
+    return { error }
   }
 
   const signOut = async () => {
@@ -99,6 +120,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     user,
     profile,
     loading,
+    signInWithEmail,
+    signUpWithEmail,
     signInWithGoogle,
     signOut,
     refreshProfile,

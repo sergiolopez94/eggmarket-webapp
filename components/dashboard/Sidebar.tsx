@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
-import { useAuth } from '@/components/auth/AuthProvider'
 import {
   LayoutDashboard,
   FileText,
@@ -11,12 +10,14 @@ import {
   Package,
   Route,
   Settings,
-  LogOut
+  LogOut,
+  Truck
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
+  { name: 'Carters', href: '/dashboard/carters', icon: Truck },
   { name: 'Documents', href: '/dashboard/documents', icon: FileText },
   { name: 'Orders', href: '/dashboard/orders', icon: Package },
   { name: 'Routes', href: '/dashboard/routes', icon: Route },
@@ -29,10 +30,9 @@ const adminNavigation = [
 
 export function Sidebar() {
   const pathname = usePathname()
-  const { profile, signOut } = useAuth()
 
-  const isAdmin = profile?.role === 'admin'
-  const canManageUsers = profile?.role === 'admin' || profile?.role === 'manager'
+  // For internal app - assuming admin permissions for now
+  const canManageUsers = true
 
   return (
     <div className="flex h-screen w-64 flex-col bg-card border-r border-border">
@@ -46,20 +46,18 @@ export function Sidebar() {
         <div className="flex items-center space-x-3">
           <div className="flex-1 min-w-0">
             <p className="text-sm font-medium text-foreground truncate">
-              {profile?.name || profile?.email}
+              Admin User
             </p>
             <div className="flex items-center space-x-2">
               <span className={cn(
                 "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium",
-                getRoleColor(profile?.role || 'viewer')
+                getRoleColor('admin')
               )}>
-                {profile?.role}
+                admin
               </span>
-              {profile?.company_id && (
-                <span className="text-xs text-muted-foreground">
-                  Demo Company
-                </span>
-              )}
+              <span className="text-xs text-muted-foreground">
+                Internal App
+              </span>
             </div>
           </div>
         </div>
@@ -126,17 +124,11 @@ export function Sidebar() {
         )}
       </nav>
 
-      {/* Sign Out */}
+      {/* System Info */}
       <div className="p-4 border-t border-border">
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={signOut}
-          className="w-full justify-start"
-        >
-          <LogOut className="mr-3 h-4 w-4" />
-          Sign Out
-        </Button>
+        <div className="text-xs text-muted-foreground text-center">
+          Egg Market Internal Dashboard
+        </div>
       </div>
     </div>
   )
@@ -144,7 +136,7 @@ export function Sidebar() {
 
 function getRoleColor(role: string): string {
   const roleColors = {
-    admin: "bg-blue-700 text-white",
+    admin: "bg-blue-800 text-white",
     manager: "bg-blue-500 text-white",
     salesperson: "bg-blue-400 text-white",
     viewer: "bg-neutral-500 text-white"
