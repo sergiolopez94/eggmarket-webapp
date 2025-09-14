@@ -23,6 +23,14 @@ Simple webapp for egg market operations: document management, sales orders, rout
 - Create orders with product selection
 - User knows which company they're working for
 - Order status tracking
+- Role-based permissions (salespeople can create, managers can edit all)
+
+### 3.5 User & Team Management
+- Admin dashboard for managing team members
+- Invite users via email with specific roles
+- Sync with Inflow team member IDs
+- Deactivate/reactivate users
+- Role-based access control throughout app
 
 ### 3.3 Route Planning
 - Drag orders to trucks
@@ -37,30 +45,36 @@ Simple webapp for egg market operations: document management, sales orders, rout
 
 ### Core Tables
 ```sql
--- Users
-users: id, email, name, company_id
+-- Users (with role management)
+users: id, email, name, role, company_id, inflow_teammember_id, is_active
 
 -- Companies
-companies: id, name, inflow_api_key
+companies: id, name, inflow_api_key, inflow_api_url
 
 -- Documents
-documents: id, company_id, name, file_url, expiration_date
+documents: id, company_id, name, file_url, expiration_date, uploaded_by
 
 -- Products (synced from Inflow)
-products: id, company_id, name, sku, price, stock_quantity
+products: id, company_id, inflow_product_id, name, sku, price, stock_quantity
 
 -- Orders
-orders: id, company_id, customer_name, status, total_amount
+orders: id, company_id, customer_name, status, total_amount, created_by
 
 -- Order Items
 order_items: id, order_id, product_id, quantity, unit_price
 
 -- Routes (simple)
-routes: id, company_id, route_date, zone_name
+routes: id, company_id, route_date, zone_name, created_by
 
 -- Route Orders
 route_orders: id, route_id, order_id, truck_number, sequence
 ```
+
+### User Role System
+**Admin**: Full system access, user management, company settings
+**Manager**: All operations except user management
+**Salesperson**: Create/edit orders, view products, basic route planning
+**Viewer**: Read-only access to orders and documents
 
 ## 5. Implementation Plan
 
@@ -70,9 +84,10 @@ route_orders: id, route_id, order_id, truck_number, sequence
 - Basic UI with ShadCN
 
 ### Phase 2: Core Features (Weeks 3-6)
+- User management and role system
 - Document upload/management
-- Sales order forms
-- Inflow API integration for products
+- Sales order forms with role permissions
+- Inflow API integration (products + team members)
 - Basic route planning (drag/drop)
 
 ### Phase 3: Polish (Weeks 7-8)
@@ -115,10 +130,22 @@ route_orders: id, route_id, order_id, truck_number, sequence
 
 ## 7. Success Criteria
 
+- User management with role-based permissions ✓
 - Upload documents with expiration tracking ✓
 - Create sales orders with Inflow products ✓
 - Plan routes with drag/drop interface ✓
 - Generate warehouse picking lists ✓
 - Process PDFs to extract orders (Phase 4) ✓
 
-This simplified PRD focuses on delivering core functionality quickly while maintaining the option to expand later.
+## 8. Internal App Focus
+
+**Removed for Internal Use:**
+- Stripe payments (not needed for internal tool)
+- Public marketing pages
+- Customer-facing features
+
+**Enhanced for Internal Use:**
+- Advanced user role management
+- Inflow team member synchronization
+- Company-specific workflows
+- Admin controls and oversight
