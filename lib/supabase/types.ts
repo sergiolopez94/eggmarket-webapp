@@ -106,6 +106,65 @@ export interface Database {
           updated_at?: string
         }
       }
+      carters: {
+        Row: {
+          id: string
+          name: string
+          last_name: string
+          phone: string
+          email: string
+          status: 'active' | 'inactive'
+          license_expiry: string
+          carter_cert_expiry: string
+          insurance_expiry: string
+          license_file_path: string | null
+          carter_cert_file_path: string | null
+          insurance_file_path: string | null
+          truck_make: string | null
+          truck_model: string | null
+          truck_capacity: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          name: string
+          last_name: string
+          phone: string
+          email: string
+          status?: 'active' | 'inactive'
+          license_expiry: string
+          carter_cert_expiry: string
+          insurance_expiry: string
+          license_file_path?: string | null
+          carter_cert_file_path?: string | null
+          insurance_file_path?: string | null
+          truck_make?: string | null
+          truck_model?: string | null
+          truck_capacity?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          last_name?: string
+          phone?: string
+          email?: string
+          status?: 'active' | 'inactive'
+          license_expiry?: string
+          carter_cert_expiry?: string
+          insurance_expiry?: string
+          license_file_path?: string | null
+          carter_cert_file_path?: string | null
+          insurance_file_path?: string | null
+          truck_make?: string | null
+          truck_model?: string | null
+          truck_capacity?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+      }
     }
     Views: {
       [_ in never]: never
