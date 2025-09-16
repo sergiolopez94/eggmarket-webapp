@@ -67,10 +67,15 @@ export default function NewCarterPage() {
     // Trigger validation for the updated field
     trigger(fieldName as keyof CarterFormData)
 
-    // Show user feedback about auto-population
+    // Show user feedback about auto-population with document-specific messaging
+    const confidenceText = confidence ? ` (${Math.round(confidence * 100)}% confidence)` : ''
+
     if (fieldName === 'licenseExpiry') {
-      const confidenceText = confidence ? ` (${Math.round(confidence * 100)}% confidence)` : ''
       toast.success(`License expiry date auto-filled: ${value}${confidenceText}`)
+    } else if (fieldName === 'carterCertExpiry') {
+      toast.success(`Carter certificate expiry date auto-filled: ${value}${confidenceText}`)
+    } else if (fieldName === 'insuranceExpiry') {
+      toast.success(`Insurance expiry date auto-filled: ${value}${confidenceText}`)
     }
   }
 
@@ -289,18 +294,25 @@ export default function NewCarterPage() {
                   )}
                 </div>
 
-                <div className="p-3 bg-muted rounded-lg">
-                  <p className="text-sm text-muted-foreground">
-                    <strong>Note:</strong> Automatic extraction is available for licenses above. Carter certificate extraction will be added in the next phase.
+                <div className="p-3 bg-green-50 rounded-lg border border-green-200">
+                  <p className="text-sm text-green-800">
+                    <strong>✨ Smart Extraction Active:</strong> Expiration dates will be automatically detected and populated from uploaded documents.
                   </p>
                 </div>
               </div>
 
               <div className="space-y-2">
-                <FileUpload
+                <SmartFileUpload
+                  documentType="carter_cert"
                   label="Carter Certificate File *"
-                  description="Upload PDF or image of carter certificate (max 5MB)"
+                  description="Upload PDF or image of carter certificate (max 5MB) - expiry date will be auto-detected"
                   onFilesChange={setCertFiles}
+                  onFieldExtracted={handleFieldExtracted}
+                  formFieldMapping={{
+                    expirationDate: 'carterCertExpiry',
+                    carterCertExpiry: 'carterCertExpiry'
+                  }}
+                  autoPopulate={true}
                 />
               </div>
             </div>
@@ -339,10 +351,17 @@ export default function NewCarterPage() {
               </div>
 
               <div className="space-y-2">
-                <FileUpload
+                <SmartFileUpload
+                  documentType="insurance"
                   label="Insurance File *"
-                  description="Upload PDF or image of insurance document (max 5MB)"
+                  description="Upload PDF or image of insurance document (max 5MB) - expiry date will be auto-detected"
                   onFilesChange={setInsuranceFiles}
+                  onFieldExtracted={handleFieldExtracted}
+                  formFieldMapping={{
+                    expirationDate: 'insuranceExpiry',
+                    insuranceExpiry: 'insuranceExpiry'
+                  }}
+                  autoPopulate={true}
                 />
               </div>
             </div>

@@ -2,49 +2,62 @@
   "extractionFields": {
     "firstName": {
       "type": "string",
-      "patterns": ["first name", "given name", "primer nombre"],
-      "required": true,
+      "patterns": ["first name", "given name", "primer nombre", "name"],
+      "required": false,
       "description": "First given name"
     },
-    "secondName": {
+    "lastName": {
       "type": "string",
-      "patterns": ["second name", "middle name", "segundo nombre"],
+      "patterns": ["last name", "surname", "apellido", "family name"],
       "required": false,
-      "description": "Second given name (if present)"
+      "description": "Last name or family name"
     },
-    "paternalSurname": {
+    "fullName": {
       "type": "string",
-      "patterns": ["paternal surname", "father surname", "apellido paterno"],
-      "required": true,
-      "description": "Fathers surname"
-    },
-    "maternalSurname": {
-      "type": "string",
-      "patterns": ["maternal surname", "mother surname", "apellido materno"],
+      "patterns": ["name", "full name", "nombre completo", "holder"],
       "required": false,
-      "description": "Mothers surname (if present)"
+      "description": "Full name of license holder"
     },
     "dateOfBirth": {
       "type": "date",
-      "patterns": ["dob", "nac", "date of birth", "fecha nacimiento", "born"],
-      "required": true,
-      "format": ["MM/DD/YYYY", "DD/MM/YYYY", "YYYY-MM-DD", "DDMmmYYYY"],
+      "patterns": ["dob", "nac", "date of birth", "fecha nacimiento", "born", "birth"],
+      "required": false,
+      "format": ["MM/DD/YYYY", "DD/MM/YYYY", "YYYY-MM-DD", "DDMmmYYYY", "MM-DD-YYYY"],
       "description": "Date of birth"
     },
     "expirationDate": {
       "type": "date",
-      "patterns": ["exp", "expires", "expiration", "valid until", "vencimiento"],
+      "patterns": ["exp", "expires", "expiration", "valid until", "vencimiento", "expire", "expiry"],
       "required": true,
-      "format": ["MM/DD/YYYY", "DD/MM/YYYY", "YYYY-MM-DD", "DDMmmYYYY"],
-      "description": "License expiration date"
+      "format": ["MM/DD/YYYY", "DD/MM/YYYY", "YYYY-MM-DD", "DDMmmYYYY", "MM-DD-YYYY"],
+      "description": "License expiration date - PRIMARY FIELD"
     },
     "licenseNumber": {
       "type": "string",
-      "patterns": ["num", "number", "license", "dl", "#", "numero"],
-      "required": true,
+      "patterns": ["num", "number", "license", "dl", "#", "numero", "id", "license no"],
+      "required": false,
       "description": "Driver license number"
+    },
+    "state": {
+      "type": "string",
+      "patterns": ["state", "estado", "province", "region"],
+      "required": false,
+      "description": "State or province of issuance"
+    },
+    "country": {
+      "type": "string",
+      "patterns": ["country", "país", "nation"],
+      "required": false,
+      "description": "Country of issuance"
+    },
+    "issueDate": {
+      "type": "date",
+      "patterns": ["issued", "issue date", "fecha emisión", "issued on", "iss"],
+      "required": false,
+      "format": ["MM/DD/YYYY", "DD/MM/YYYY", "YYYY-MM-DD", "DDMmmYYYY", "MM-DD-YYYY"],
+      "description": "License issue date"
     }
   },
-  "documentType": "puerto_rico_license",
-  "specialInstructions": "For Puerto Rico licenses, names typically follow Spanish naming conventions with paternal and maternal surnames. SERGIO ABRAHAM LOPEZ PEREZ would be: firstName=SERGIO, secondName=ABRAHAM, paternalSurname=LOPEZ, maternalSurname=PEREZ"
+  "documentType": "general_license",
+  "specialInstructions": "Universal license template optimized for ANY driver license format. Primary goal is extracting expiration date. Works with US, Puerto Rico, and international licenses. Name extraction is flexible - can extract firstName/lastName separately or fullName as single field."
 }
