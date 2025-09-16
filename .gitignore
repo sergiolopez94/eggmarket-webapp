@@ -51,4 +51,4 @@ temp/
 .claude/
 
 # Supabase
-.supabase/
+.supabase/eggmarket-vision-key.json

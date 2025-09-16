@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@/lib/supabase/server'
 import { uploadCarterDocumentServer, validateFileServer } from '@/lib/supabase/server-storage'
+import { FileTypeDetectionService } from '@/lib/services/file-type-detection'
 
 interface ExtractionRequest {
   documentType: 'license' | 'carter_cert' | 'insurance'
@@ -66,7 +67,27 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    console.log('File validation passed, uploading to storage')
+    console.log('File validation passed, analyzing file type and processing strategy')
+
+    // Enhanced file type detection and processing strategy analysis
+    let processingStrategy
+    try {
+      processingStrategy = await FileTypeDetectionService.getProcessingStrategy(file)
+      console.log('Processing strategy:', {
+        strategy: processingStrategy.strategy,
+        fileType: processingStrategy.fileType.detectedType,
+        estimatedTime: processingStrategy.estimatedTime,
+        estimatedCost: processingStrategy.estimatedCost
+      })
+    } catch (strategyError) {
+      console.error('Processing strategy analysis failed:', strategyError)
+      return NextResponse.json(
+        { success: false, error: 'Unsupported file type or analysis failed' },
+        { status: 400 }
+      )
+    }
+
+    console.log('Processing strategy determined, uploading to storage')
 
     // Upload file to storage using server-compatible function
     let filePath: string
@@ -99,7 +120,20 @@ export async function POST(request: NextRequest) {
         priority: 1,
         metadata: {
           originalFileName: file.name,
-          uploadedAt: new Date().toISOString()
+          uploadedAt: new Date().toISOString(),
+          fileType: processingStrategy.fileType.detectedType,
+          mimeType: processingStrategy.fileType.mimeType,
+          processingStrategy: processingStrategy.strategy,
+          estimatedTime: processingStrategy.estimatedTime,
+          estimatedCost: processingStrategy.estimatedCost,
+          ...(processingStrategy.pdfAnalysis && {
+            pdfAnalysis: {
+              hasText: processingStrategy.pdfAnalysis.hasText,
+              pageCount: processingStrategy.pdfAnalysis.pageCount,
+              textLength: processingStrategy.pdfAnalysis.textLength,
+              confidence: processingStrategy.pdfAnalysis.confidence
+            }
+          })
         }
       })
       .select()
@@ -140,7 +174,7 @@ export async function POST(request: NextRequest) {
       jobId: job.id,
       extractionId: extraction?.id || job.id,
       status: 'queued',
-      estimatedTime: '3-7 seconds',
+      estimatedTime: processingStrategy.estimatedTime,
       websocketUrl: `/api/extractions/stream?jobId=${job.id}`
     }
 
