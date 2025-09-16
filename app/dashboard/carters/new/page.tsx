@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { FileUpload } from '@/components/ui/file-upload'
+import { SmartFileUpload } from '@/components/ui/smart-file-upload'
 import {
   ArrowLeft,
   Save,
@@ -51,10 +52,27 @@ export default function NewCarterPage() {
     register,
     handleSubmit,
     formState: { errors },
-    watch
+    watch,
+    setValue,
+    trigger
   } = useForm<CarterFormData>({
     resolver: zodResolver(carterSchema)
   })
+
+  // Handler for automatic field population from extraction
+  const handleFieldExtracted = (fieldName: string, value: string, confidence?: number) => {
+    console.log(`Auto-populating ${fieldName} with value: ${value} (confidence: ${confidence})`)
+    setValue(fieldName as keyof CarterFormData, value)
+
+    // Trigger validation for the updated field
+    trigger(fieldName as keyof CarterFormData)
+
+    // Show user feedback about auto-population
+    if (fieldName === 'licenseExpiry') {
+      const confidenceText = confidence ? ` (${Math.round(confidence * 100)}% confidence)` : ''
+      toast.success(`License expiry date auto-filled: ${value}${confidenceText}`)
+    }
+  }
 
   const onSubmit = async (data: CarterFormData) => {
     setSaving(true)
@@ -224,10 +242,17 @@ export default function NewCarterPage() {
               </div>
 
               <div className="space-y-2">
-                <FileUpload
+                <SmartFileUpload
+                  documentType="license"
                   label="License File *"
-                  description="Upload PDF or image of driving license (max 5MB)"
+                  description="Upload PDF or image of driving license (max 5MB) - expiry date will be auto-detected"
                   onFilesChange={setLicenseFiles}
+                  onFieldExtracted={handleFieldExtracted}
+                  formFieldMapping={{
+                    expirationDate: 'licenseExpiry',
+                    licenseExpiry: 'licenseExpiry'
+                  }}
+                  autoPopulate={true}
                 />
               </div>
             </div>
@@ -266,7 +291,7 @@ export default function NewCarterPage() {
 
                 <div className="p-3 bg-muted rounded-lg">
                   <p className="text-sm text-muted-foreground">
-                    <strong>Note:</strong> Unstract integration will be added later to automatically extract expiry dates from uploaded documents.
+                    <strong>Note:</strong> Automatic extraction is available for licenses above. Carter certificate extraction will be added in the next phase.
                   </p>
                 </div>
               </div>
