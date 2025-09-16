@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@auth/mongodb-adapter": "^3.7.4",
+    "@google-cloud/vision": "^4.3.3",
     "@headlessui/react": "^2.2.0",
     "@hookform/resolvers": "^5.2.1",
     "@radix-ui/react-avatar": "^1.1.10",
@@ -39,6 +40,8 @@
     "next-sitemap": "^4.2.3",
     "nextjs-toploader": "^3.7.15",
     "nodemailer": "^6.9.16",
+    "openai": "^4.77.3",
+    "pdf-parse": "^1.1.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-dropzone": "^14.3.8",
@@ -50,7 +53,7 @@
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "^3.4.17",
     "tailwindcss-animate": "^1.0.7",
-    "zod": "^4.1.8"
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/react": "19.1.13",
