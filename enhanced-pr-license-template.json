@@ -1,0 +1,107 @@
+{
+  "documentType": "puerto_rico_license",
+  "version": "1.0",
+  "description": "Puerto Rico Driver License with Spanish naming conventions",
+  "extractionFields": {
+    "firstName": {
+      "type": "string",
+      "required": true,
+      "fieldPrompt": "Extract the person's first given name (primer nombre). In Puerto Rico licenses, names follow Spanish conventions: 'SERGIO ABRAHAM LOPEZ PEREZ' means firstName=SERGIO. Look for the name section and take the first word only.",
+      "patterns": ["first name", "given name", "primer nombre"],
+      "validationRules": {
+        "minLength": 1,
+        "maxLength": 50,
+        "allowedChars": "letters and spaces",
+        "transform": "uppercase"
+      },
+      "examples": ["SERGIO", "MARIA", "JOSE", "ANA"]
+    },
+    "secondName": {
+      "type": "string",
+      "required": false,
+      "fieldPrompt": "Extract the person's second given name (segundo nombre) if present. In 'SERGIO ABRAHAM LOPEZ PEREZ', the second name is ABRAHAM. If there's no second given name, return null. This is the second word in the name section before the surnames.",
+      "patterns": ["second name", "middle name", "segundo nombre"],
+      "validationRules": {
+        "minLength": 1,
+        "maxLength": 50,
+        "allowedChars": "letters and spaces",
+        "transform": "uppercase"
+      },
+      "examples": ["ABRAHAM", "MARIA", "LUIS", null]
+    },
+    "paternalSurname": {
+      "type": "string",
+      "required": true,
+      "fieldPrompt": "Extract the paternal surname (apellido paterno). In Spanish naming, this is the father's surname. In 'SERGIO ABRAHAM LOPEZ PEREZ', LOPEZ is the paternal surname. It's typically the third word in a four-word name, or the second word in a three-word name.",
+      "patterns": ["paternal surname", "father surname", "apellido paterno"],
+      "validationRules": {
+        "minLength": 1,
+        "maxLength": 50,
+        "allowedChars": "letters and spaces",
+        "transform": "uppercase"
+      },
+      "examples": ["LOPEZ", "RODRIGUEZ", "GONZALEZ", "MARTINEZ"]
+    },
+    "maternalSurname": {
+      "type": "string",
+      "required": false,
+      "fieldPrompt": "Extract the maternal surname (apellido materno) if present. This is the mother's surname in Spanish naming conventions. In 'SERGIO ABRAHAM LOPEZ PEREZ', PEREZ is the maternal surname. It's typically the last word in the full name. If not present, return null.",
+      "patterns": ["maternal surname", "mother surname", "apellido materno"],
+      "validationRules": {
+        "minLength": 1,
+        "maxLength": 50,
+        "allowedChars": "letters and spaces",
+        "transform": "uppercase"
+      },
+      "examples": ["PEREZ", "GARCIA", "RIVERA", "TORRES", null]
+    },
+    "dateOfBirth": {
+      "type": "date",
+      "required": true,
+      "fieldPrompt": "Find the date of birth. Look for 'DOB/NAC', 'DOB', 'NAC', or similar labels. Puerto Rico licenses show dates as DDMmmYYYY (like 23Oct1994). Convert to YYYY-MM-DD format. The date represents when the person was born.",
+      "patterns": ["dob", "nac", "date of birth", "fecha nacimiento", "born"],
+      "validationRules": {
+        "format": "YYYY-MM-DD",
+        "minYear": 1900,
+        "maxYear": 2010,
+        "mustBePast": true
+      },
+      "examples": ["1994-10-23", "1985-03-15", "1992-12-01"]
+    },
+    "expirationDate": {
+      "type": "date",
+      "required": true,
+      "fieldPrompt": "Find the license expiration date. Look for 'EXP', 'EXPIRES', 'EXPIRATION' labels. Puerto Rico licenses show dates as DDMmmYYYY (like 23Oct2032). Convert to YYYY-MM-DD format. This is when the license expires and becomes invalid.",
+      "patterns": ["exp", "expires", "expiration", "valid until", "vencimiento"],
+      "validationRules": {
+        "format": "YYYY-MM-DD",
+        "minYear": 2020,
+        "maxYear": 2050,
+        "mustBeFuture": true
+      },
+      "examples": ["2032-10-23", "2028-06-30", "2025-12-15"]
+    },
+    "licenseNumber": {
+      "type": "string",
+      "required": true,
+      "fieldPrompt": "Find the driver license number. Look for 'NUM', 'NUMBER', or similar labels followed by digits. Puerto Rico license numbers are typically 6-8 digits. Extract only the numeric sequence, no letters or symbols.",
+      "patterns": ["num", "number", "license", "dl", "#", "numero"],
+      "validationRules": {
+        "format": "numeric",
+        "minLength": 4,
+        "maxLength": 12,
+        "allowedChars": "digits only"
+      },
+      "examples": ["6215667", "1234567", "98765432"]
+    }
+  },
+  "documentSpecificInstructions": [
+    "Puerto Rico licenses use Spanish naming conventions with up to 4 names: [First] [Second] [Paternal Surname] [Maternal Surname]",
+    "Dates are formatted as DDMmmYYYY (e.g., 23Oct1994) and should be converted to YYYY-MM-DD",
+    "License numbers are purely numeric sequences typically 6-8 digits long",
+    "Text may be mixed case - normalize names to uppercase",
+    "Some fields like secondName and maternalSurname may not be present on all licenses"
+  ],
+  "extractionStrategy": "field_by_field_with_context",
+  "confidenceThreshold": 0.8
+}

@@ -1,0 +1,50 @@
+{
+  "extractionFields": {
+    "firstName": {
+      "type": "string",
+      "patterns": ["first name", "given name", "primer nombre"],
+      "required": true,
+      "description": "First given name"
+    },
+    "secondName": {
+      "type": "string",
+      "patterns": ["second name", "middle name", "segundo nombre"],
+      "required": false,
+      "description": "Second given name (if present)"
+    },
+    "paternalSurname": {
+      "type": "string",
+      "patterns": ["paternal surname", "father surname", "apellido paterno"],
+      "required": true,
+      "description": "Fathers surname"
+    },
+    "maternalSurname": {
+      "type": "string",
+      "patterns": ["maternal surname", "mother surname", "apellido materno"],
+      "required": false,
+      "description": "Mothers surname (if present)"
+    },
+    "dateOfBirth": {
+      "type": "date",
+      "patterns": ["dob", "nac", "date of birth", "fecha nacimiento", "born"],
+      "required": true,
+      "format": ["MM/DD/YYYY", "DD/MM/YYYY", "YYYY-MM-DD", "DDMmmYYYY"],
+      "description": "Date of birth"
+    },
+    "expirationDate": {
+      "type": "date",
+      "patterns": ["exp", "expires", "expiration", "valid until", "vencimiento"],
+      "required": true,
+      "format": ["MM/DD/YYYY", "DD/MM/YYYY", "YYYY-MM-DD", "DDMmmYYYY"],
+      "description": "License expiration date"
+    },
+    "licenseNumber": {
+      "type": "string",
+      "patterns": ["num", "number", "license", "dl", "#", "numero"],
+      "required": true,
+      "description": "Driver license number"
+    }
+  },
+  "documentType": "puerto_rico_license",
+  "specialInstructions": "For Puerto Rico licenses, names typically follow Spanish naming conventions with paternal and maternal surnames. SERGIO ABRAHAM LOPEZ PEREZ would be: firstName=SERGIO, secondName=ABRAHAM, paternalSurname=LOPEZ, maternalSurname=PEREZ"
+}

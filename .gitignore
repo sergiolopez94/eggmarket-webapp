@@ -51,4 +51,24 @@ temp/
 .claude/
 
 # Supabase
-.supabase/
+.supabase/eggmarket-vision-key.json
+
+# Test assets and sensitive documents
+test-assets/
+*.pdf
+*.png
+*.jpg
+*.jpeg
+*license*
+*invoice*
+*certificate*
+
+# Development test files
+test-*.js
+create-*.js
+
+# Temporary tracking files
+*-IMPLEMENTATION-PLAN.md
+*-REFACTOR.md
+*-SETUP*.md
+BILLING-*.md
