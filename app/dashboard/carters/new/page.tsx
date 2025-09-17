@@ -2,13 +2,14 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { FileUpload } from '@/components/ui/file-upload'
 import { SmartFileUpload } from '@/components/ui/smart-file-upload'
 import {
@@ -20,7 +21,10 @@ import {
   FileText,
   Calendar,
   Shield,
-  Truck
+  Truck,
+  Settings,
+  CheckCircle,
+  AlertCircle
 } from 'lucide-react'
 import { toast } from 'react-hot-toast'
 import { createCarter } from '@/lib/supabase/carters'
@@ -30,9 +34,26 @@ const carterSchema = z.object({
   lastName: z.string().min(1, 'Last name is required'),
   phone: z.string().min(1, 'Phone number is required'),
   email: z.string().email('Please enter a valid email address'),
-  licenseExpiry: z.string().min(1, 'License expiry date is required'),
-  carterCertExpiry: z.string().min(1, 'Carter certificate expiry date is required'),
-  insuranceExpiry: z.string().min(1, 'Insurance expiry date is required'),
+
+  // Status (manual control)
+  status: z.enum(['active', 'inactive']).default('inactive'),
+
+  // License Information (extracted fields)
+  licenseNumber: z.string().optional(),
+  licenseExpiry: z.string().optional(),
+  dateOfBirth: z.string().optional(),
+  licenseState: z.string().optional(),
+  licenseClass: z.string().optional(),
+  height: z.string().optional(),
+  weight: z.string().optional(),
+  eyeColor: z.string().optional(),
+  sex: z.string().optional(),
+  address: z.string().optional(),
+  restrictions: z.string().optional(),
+  endorsements: z.string().optional(),
+
+  carterCertExpiry: z.string().optional(),
+  insuranceExpiry: z.string().optional(),
   truckMake: z.string().optional(),
   truckModel: z.string().optional(),
   truckCapacity: z.string().optional(),
@@ -54,28 +75,90 @@ export default function NewCarterPage() {
     formState: { errors },
     watch,
     setValue,
-    trigger
+    trigger,
+    getValues,
+    control
   } = useForm<CarterFormData>({
-    resolver: zodResolver(carterSchema)
+    resolver: zodResolver(carterSchema),
+    defaultValues: {
+      status: 'inactive'
+    }
   })
+
+  // Track extracted fields for summary notification
+  const [extractedFieldsCount, setExtractedFieldsCount] = useState(0)
+  const [extractionConfidence, setExtractionConfidence] = useState<number | null>(null)
+
+  // Watch form values for status eligibility checking
+  const formValues = watch()
+
+  // Check if carter is eligible to be active
+  const canBeActive = (() => {
+    // Must have basic info
+    if (!formValues.name?.trim() || !formValues.lastName?.trim() || !formValues.phone?.trim() || !formValues.email?.trim()) {
+      return false
+    }
+
+    // Must have license file (check if license files exist)
+    if (licenseFiles.length === 0) {
+      return false
+    }
+
+    // Check if any certificates are expired
+    const now = new Date()
+    const checkDate = (dateStr: string) => {
+      if (!dateStr) return true // Optional fields
+      const date = new Date(dateStr)
+      return date > now
+    }
+
+    // Check all expiry dates if they exist
+    if (formValues.licenseExpiry && !checkDate(formValues.licenseExpiry)) return false
+    if (formValues.carterCertExpiry && !checkDate(formValues.carterCertExpiry)) return false
+    if (formValues.insuranceExpiry && !checkDate(formValues.insuranceExpiry)) return false
+
+    return true
+  })()
+
+  // Protected fields that shouldn't be overwritten if already filled
+  const protectedFields = ['name', 'lastName', 'phone', 'email']
 
   // Handler for automatic field population from extraction
   const handleFieldExtracted = (fieldName: string, value: string, confidence?: number) => {
+    const currentValues = getValues()
+
+    // Check if this is a protected field that already has a value
+    if (protectedFields.includes(fieldName)) {
+      const currentValue = currentValues[fieldName as keyof CarterFormData]
+      if (currentValue && currentValue.trim() !== '') {
+        console.log(`Skipping extraction for ${fieldName} - field already has value: ${currentValue}`)
+        return
+      }
+    }
+
     console.log(`Auto-populating ${fieldName} with value: ${value} (confidence: ${confidence})`)
     setValue(fieldName as keyof CarterFormData, value)
 
     // Trigger validation for the updated field
     trigger(fieldName as keyof CarterFormData)
 
-    // Show user feedback about auto-population with document-specific messaging
-    const confidenceText = confidence ? ` (${Math.round(confidence * 100)}% confidence)` : ''
+    // Track extracted fields for summary
+    setExtractedFieldsCount(prev => prev + 1)
+    if (confidence && !extractionConfidence) {
+      setExtractionConfidence(confidence)
+    }
 
-    if (fieldName === 'licenseExpiry') {
-      toast.success(`License expiry date auto-filled: ${value}${confidenceText}`)
-    } else if (fieldName === 'carterCertExpiry') {
-      toast.success(`Carter certificate expiry date auto-filled: ${value}${confidenceText}`)
-    } else if (fieldName === 'insuranceExpiry') {
-      toast.success(`Insurance expiry date auto-filled: ${value}${confidenceText}`)
+    // No individual field toasts - just update silently
+  }
+
+  // Show summary notification when extraction completes
+  const handleExtractionComplete = () => {
+    if (extractedFieldsCount > 0) {
+      const confidenceText = extractionConfidence ? ` with ${Math.round(extractionConfidence * 100)}% confidence` : ''
+      toast.success(`Document processed! ${extractedFieldsCount} fields auto-filled${confidenceText}`)
+      // Reset counters
+      setExtractedFieldsCount(0)
+      setExtractionConfidence(null)
     }
   }
 
@@ -88,10 +171,10 @@ export default function NewCarterPage() {
         last_name: data.lastName,
         phone: data.phone,
         email: data.email,
-        license_expiry: data.licenseExpiry,
-        carter_cert_expiry: data.carterCertExpiry,
-        insurance_expiry: data.insuranceExpiry,
-        status: 'active' as const,
+        license_expiry: data.licenseExpiry || null,
+        carter_cert_expiry: data.carterCertExpiry || null,
+        insurance_expiry: data.insuranceExpiry || null,
+        status: data.status,
         // File paths will be handled by file upload later
         license_file_path: null,
         carter_cert_file_path: null,
@@ -211,6 +294,65 @@ export default function NewCarterPage() {
                   <p className="text-sm text-red-600">{errors.email.message}</p>
                 )}
               </div>
+
+              <div className="space-y-2 md:col-span-2">
+                <Label htmlFor="status">Status</Label>
+                <div className="space-y-3">
+                  <Controller
+                    name="status"
+                    control={control}
+                    render={({ field }) => (
+                      <Select value={field.value} onValueChange={field.onChange}>
+                        <SelectTrigger className="w-full">
+                          <Settings className="h-4 w-4 mr-2" />
+                          <SelectValue placeholder="Select status" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="inactive">
+                            <div className="flex items-center space-x-2">
+                              <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                              <span>Inactive</span>
+                            </div>
+                          </SelectItem>
+                          <SelectItem value="active" disabled={!canBeActive}>
+                            <div className="flex items-center space-x-2">
+                              <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                              <span>Active</span>
+                            </div>
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+                    )}
+                  />
+
+                  {/* Status eligibility indicators */}
+                  <div className="space-y-2">
+                    {canBeActive ? (
+                      <div className="flex items-center space-x-2 text-sm text-green-700 bg-green-50 p-3 rounded-lg border border-green-200">
+                        <CheckCircle className="h-4 w-4" />
+                        <span>Carter is eligible to be set as active</span>
+                      </div>
+                    ) : (
+                      <div className="flex items-start space-x-2 text-sm text-amber-700 bg-amber-50 p-3 rounded-lg border border-amber-200">
+                        <AlertCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                        <div className="space-y-1">
+                          <p className="font-medium">Carter cannot be activated yet. Missing:</p>
+                          <ul className="list-disc list-inside space-y-0.5 text-xs">
+                            {!formValues.name?.trim() && <li>First name</li>}
+                            {!formValues.lastName?.trim() && <li>Last name</li>}
+                            {!formValues.phone?.trim() && <li>Phone number</li>}
+                            {!formValues.email?.trim() && <li>Email address</li>}
+                            {licenseFiles.length === 0 && <li>License file upload</li>}
+                            {formValues.licenseExpiry && new Date(formValues.licenseExpiry) <= new Date() && <li>Valid license (expired)</li>}
+                            {formValues.carterCertExpiry && new Date(formValues.carterCertExpiry) <= new Date() && <li>Valid carter certificate (expired)</li>}
+                            {formValues.insuranceExpiry && new Date(formValues.insuranceExpiry) <= new Date() && <li>Valid insurance (expired)</li>}
+                          </ul>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
           </CardContent>
         </Card>
@@ -223,42 +365,183 @@ export default function NewCarterPage() {
               <span>License Documentation</span>
             </CardTitle>
             <CardDescription>
-              Upload driving license and set expiry date
+              Upload driving license - all fields will be auto-detected and populated
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid gap-6 lg:grid-cols-2">
+              {/* File Upload Section */}
               <div className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="licenseExpiry">License Expiry Date *</Label>
-                  <div className="relative">
-                    <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                    <Input
-                      id="licenseExpiry"
-                      type="date"
-                      className="pl-10"
-                      {...register('licenseExpiry')}
-                    />
-                  </div>
-                  {errors.licenseExpiry && (
-                    <p className="text-sm text-red-600">{errors.licenseExpiry.message}</p>
-                  )}
-                </div>
-              </div>
-
-              <div className="space-y-2">
                 <SmartFileUpload
                   documentType="license"
-                  label="License File *"
-                  description="Upload PDF or image of driving license (max 5MB) - expiry date will be auto-detected"
+                  label="License File"
+                  description="Upload PDF or image of driving license (max 5MB) - all information will be auto-extracted"
                   onFilesChange={setLicenseFiles}
                   onFieldExtracted={handleFieldExtracted}
+                  onExtractionComplete={handleExtractionComplete}
                   formFieldMapping={{
+                    // Core fields
+                    licenseNumber: 'licenseNumber',
                     expirationDate: 'licenseExpiry',
-                    licenseExpiry: 'licenseExpiry'
+                    dateOfBirth: 'dateOfBirth',
+                    state: 'licenseState',
+                    licenseClass: 'licenseClass',
+
+                    // Personal details
+                    firstName: 'name',
+                    lastName: 'lastName',
+                    height: 'height',
+                    weight: 'weight',
+                    eyeColor: 'eyeColor',
+                    sex: 'sex',
+                    address: 'address',
+
+                    // License specifics
+                    restrictions: 'restrictions',
+                    endorsements: 'endorsements'
                   }}
                   autoPopulate={true}
                 />
+              </div>
+
+              {/* License Information Fields */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-medium">License Information</h3>
+
+                {/* Primary License Fields */}
+                <div className="grid gap-4 md:grid-cols-2">
+                  <div className="space-y-2">
+                    <Label htmlFor="licenseNumber">License Number</Label>
+                    <Input
+                      id="licenseNumber"
+                      {...register('licenseNumber')}
+                      placeholder="Auto-filled from upload"
+                      className="bg-gray-50"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="licenseExpiry">License Expiry Date</Label>
+                    <div className="relative">
+                      <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                      <Input
+                        id="licenseExpiry"
+                        type="date"
+                        className="pl-10"
+                        {...register('licenseExpiry')}
+                      />
+                    </div>
+                    {errors.licenseExpiry && (
+                      <p className="text-sm text-red-600">{errors.licenseExpiry.message}</p>
+                    )}
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="dateOfBirth">Date of Birth</Label>
+                    <Input
+                      id="dateOfBirth"
+                      type="date"
+                      {...register('dateOfBirth')}
+                      className="bg-gray-50"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="licenseState">License State</Label>
+                    <Input
+                      id="licenseState"
+                      {...register('licenseState')}
+                      placeholder="Auto-filled from upload"
+                      className="bg-gray-50"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="licenseClass">License Class</Label>
+                    <Input
+                      id="licenseClass"
+                      {...register('licenseClass')}
+                      placeholder="A, B, C, CDL, etc."
+                      className="bg-gray-50"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="address">Address</Label>
+                    <Input
+                      id="address"
+                      {...register('address')}
+                      placeholder="Auto-filled from upload"
+                      className="bg-gray-50"
+                    />
+                  </div>
+                </div>
+
+                {/* Physical Characteristics */}
+                <div className="grid gap-4 md:grid-cols-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="height">Height</Label>
+                    <Input
+                      id="height"
+                      {...register('height')}
+                      placeholder="e.g., 6-02"
+                      className="bg-gray-50"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="weight">Weight</Label>
+                    <Input
+                      id="weight"
+                      {...register('weight')}
+                      placeholder="lbs"
+                      className="bg-gray-50"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="eyeColor">Eye Color</Label>
+                    <Input
+                      id="eyeColor"
+                      {...register('eyeColor')}
+                      placeholder="BRN, BLU, etc."
+                      className="bg-gray-50"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="sex">Sex</Label>
+                    <Input
+                      id="sex"
+                      {...register('sex')}
+                      placeholder="M/F"
+                      className="bg-gray-50"
+                    />
+                  </div>
+                </div>
+
+                {/* License Specifics */}
+                <div className="grid gap-4 md:grid-cols-2">
+                  <div className="space-y-2">
+                    <Label htmlFor="restrictions">Restrictions</Label>
+                    <Input
+                      id="restrictions"
+                      {...register('restrictions')}
+                      placeholder="NONE or specific restrictions"
+                      className="bg-gray-50"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="endorsements">Endorsements</Label>
+                    <Input
+                      id="endorsements"
+                      {...register('endorsements')}
+                      placeholder="HAZMAT, Passenger, etc."
+                      className="bg-gray-50"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </CardContent>
@@ -279,7 +562,7 @@ export default function NewCarterPage() {
             <div className="grid gap-6 md:grid-cols-2">
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="carterCertExpiry">Certificate Expiry Date *</Label>
+                  <Label htmlFor="carterCertExpiry">Certificate Expiry Date</Label>
                   <div className="relative">
                     <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                     <Input
@@ -304,7 +587,7 @@ export default function NewCarterPage() {
               <div className="space-y-2">
                 <SmartFileUpload
                   documentType="carter_cert"
-                  label="Carter Certificate File *"
+                  label="Carter Certificate File"
                   description="Upload PDF or image of carter certificate (max 5MB) - expiry date will be auto-detected"
                   onFilesChange={setCertFiles}
                   onFieldExtracted={handleFieldExtracted}
@@ -334,7 +617,7 @@ export default function NewCarterPage() {
             <div className="grid gap-6 md:grid-cols-2">
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="insuranceExpiry">Insurance Expiry Date *</Label>
+                  <Label htmlFor="insuranceExpiry">Insurance Expiry Date</Label>
                   <div className="relative">
                     <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                     <Input
@@ -353,7 +636,7 @@ export default function NewCarterPage() {
               <div className="space-y-2">
                 <SmartFileUpload
                   documentType="insurance"
-                  label="Insurance File *"
+                  label="Insurance File"
                   description="Upload PDF or image of insurance document (max 5MB) - expiry date will be auto-detected"
                   onFilesChange={setInsuranceFiles}
                   onFieldExtracted={handleFieldExtracted}

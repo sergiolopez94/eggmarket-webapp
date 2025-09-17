@@ -78,7 +78,7 @@ export function useDocumentExtraction({
 
   const startExtraction = useCallback(async (file: File): Promise<ExtractionResult | null> => {
     if (state.isExtracting) {
-      toast.error('Extraction already in progress')
+      console.log('Extraction already in progress')
       return null
     }
 
@@ -130,13 +130,9 @@ export function useDocumentExtraction({
 
       onProgress?.(30, 'Queued for processing...')
 
-      // Set up WebSocket for real-time updates
-      if (extractionResponse.websocketUrl) {
-        await setupWebSocket(extractionResponse.websocketUrl, extractionResponse.jobId)
-      } else {
-        // Fall back to polling if WebSocket URL not provided
-        await pollForResults(extractionResponse.jobId)
-      }
+      // Use polling for status updates (WebSocket disabled)
+      console.log('Using polling for job status updates')
+      await pollForResults(extractionResponse.jobId)
 
       return state.result
 
@@ -216,18 +212,38 @@ export function useDocumentExtraction({
     })
   }, [updateState, onProgress])
 
-  const pollForResults = useCallback(async (jobId: string, maxAttempts = 30) => {
+  const pollForResults = useCallback(async (jobId: string, maxAttempts = 60) => {
+    console.log(`🔄 Starting polling for job ${jobId} (max ${maxAttempts} attempts)`)
+
     for (let attempt = 0; attempt < maxAttempts; attempt++) {
       try {
-        await new Promise(resolve => setTimeout(resolve, 2000)) // Wait 2 seconds
+        // Wait between attempts (start fast, slow down over time)
+        const waitTime = attempt < 5 ? 1000 : attempt < 15 ? 2000 : 3000
+        await new Promise(resolve => setTimeout(resolve, waitTime))
+
+        console.log(`📡 Polling attempt ${attempt + 1}/${maxAttempts} for job ${jobId}`)
 
         const response = await fetch(`/api/extractions/${jobId}`)
-        if (!response.ok) continue
+        if (!response.ok) {
+          console.warn(`⚠️  Polling attempt ${attempt + 1} failed with status ${response.status}`)
+          continue
+        }
 
         const result = await response.json()
 
-        if (result.status === 'completed' || result.status === 'failed') {
-          handleExtractionUpdate(result)
+        if (!result.success) {
+          console.warn(`⚠️  API returned error:`, result.error)
+          continue
+        }
+
+        const jobData = result.data
+
+        console.log(`📊 Job ${jobId} status: ${jobData.status}`)
+
+        // Check for completion or failure
+        if (jobData.status === 'completed' || jobData.status === 'failed') {
+          console.log(`✅ Job ${jobId} finished with status: ${jobData.status}`)
+          handleExtractionUpdate(jobData)
           return
         }
 
@@ -235,25 +251,59 @@ export function useDocumentExtraction({
         const progressMap = {
           'queued': 30,
           'processing': 60,
-          'analyzing': 80
+          'analyzing': 80,
+          'finalizing': 90
         }
-        const progress = progressMap[result.status as keyof typeof progressMap] || 50
+        const progress = progressMap[jobData.status as keyof typeof progressMap] || 50
+
+        // Show more detailed progress message
+        const progressMessage = jobData.progress?.message || `Processing: ${jobData.status}`
 
         updateState({
           progress,
-          status: result.status,
-          estimatedTimeRemaining: result.estimatedTimeRemaining
+          status: jobData.status,
+          estimatedTimeRemaining: jobData.estimatedTimeRemaining
         })
 
-        onProgress?.(progress, `Processing: ${result.status}`)
+        onProgress?.(progress, progressMessage)
 
       } catch (error) {
-        console.error('Polling error:', error)
+        console.error(`❌ Polling error on attempt ${attempt + 1}:`, error)
+
+        // If we're having network issues, try to trigger job processing
+        if (attempt === 10) {
+          console.log(`🔧 Triggering job processing after polling issues...`)
+          try {
+            await fetch('/api/admin/queue/process', { method: 'POST' })
+          } catch (triggerError) {
+            console.warn('Failed to trigger job processing:', triggerError)
+          }
+        }
       }
     }
 
-    // Timeout
-    throw new Error('Extraction timeout - please try again')
+    // Timeout - but let's check one more time
+    console.log(`⏰ Polling timeout for job ${jobId}, checking final status...`)
+    try {
+      const finalResponse = await fetch(`/api/extractions/${jobId}`)
+      if (finalResponse.ok) {
+        const finalResult = await finalResponse.json()
+        if (finalResult.success && finalResult.data) {
+          const status = finalResult.data.status
+          if (status === 'completed' || status === 'failed') {
+            console.log(`🎯 Final check found completed job: ${status}`)
+            handleExtractionUpdate(finalResult.data)
+            return
+          }
+        }
+      }
+    } catch (finalError) {
+      console.error('Final status check failed:', finalError)
+    }
+
+    // True timeout
+    console.error(`💥 Extraction timeout for job ${jobId} after ${maxAttempts} attempts`)
+    throw new Error('Extraction timeout - the job may still be processing. Please check back later or contact support.')
   }, [updateState, onProgress])
 
   const handleExtractionUpdate = useCallback((update: any) => {
@@ -282,13 +332,8 @@ export function useDocumentExtraction({
       onComplete?.(result)
       onProgress?.(100, 'Extraction completed!')
 
-      // Show success message with confidence
-      const confidence = result.confidence || 0
-      if (confidence >= 0.8) {
-        toast.success(`Document processed successfully! (${Math.round(confidence * 100)}% confidence)`)
-      } else {
-        toast.success(`Document processed - please review extracted data (${Math.round(confidence * 100)}% confidence)`)
-      }
+      // Don't show toast here - let the form component handle notifications
+      console.log(`Document extraction completed with ${Math.round((result.confidence || 0) * 100)}% confidence`)
 
       // Close WebSocket if open
       if (wsRef.current) {
@@ -351,7 +396,7 @@ export function useDocumentExtraction({
       result: null
     })
 
-    toast.info('Extraction cancelled')
+    console.log('Extraction cancelled')
   }, [updateState])
 
   const reset = useCallback(() => {
@@ -374,13 +419,38 @@ export function useDocumentExtraction({
       return state.result.data[fieldName]
     }
 
-    // Try common variations for expiration date
-    if (fieldName === 'expirationDate' || fieldName === 'licenseExpiry') {
-      return state.result.data.expirationDate ||
-             state.result.data.licenseExpiry ||
-             state.result.data.exp ||
-             state.result.data.expiry ||
-             null
+    // Field name mappings for comprehensive license data
+    const fieldMappings: Record<string, string[]> = {
+      // Basic info
+      'name': ['firstName', 'name', 'first_name'],
+      'lastName': ['lastName', 'surname', 'last_name'],
+
+      // License fields
+      'licenseNumber': ['licenseNumber', 'license_number', 'dlNumber', 'dl_number'],
+      'licenseExpiry': ['expirationDate', 'licenseExpiry', 'license_expiry', 'exp', 'expiry', 'expires'],
+      'expirationDate': ['expirationDate', 'licenseExpiry', 'license_expiry', 'exp', 'expiry', 'expires'],
+      'dateOfBirth': ['dateOfBirth', 'date_of_birth', 'dob', 'birthDate', 'birth_date'],
+      'licenseState': ['licenseState', 'license_state', 'state', 'issuingState', 'issuing_state'],
+      'licenseClass': ['licenseClass', 'license_class', 'class', 'vehicleClass', 'vehicle_class'],
+
+      // Physical characteristics
+      'height': ['height', 'ht'],
+      'weight': ['weight', 'wt'],
+      'eyeColor': ['eyeColor', 'eye_color', 'eyes'],
+      'sex': ['sex', 'gender'],
+
+      // Address and details
+      'address': ['address', 'addr', 'street_address', 'home_address'],
+      'restrictions': ['restrictions', 'restriction_codes', 'codes'],
+      'endorsements': ['endorsements', 'endorsement_codes']
+    }
+
+    // Try variations for this field
+    const variations = fieldMappings[fieldName] || []
+    for (const variation of variations) {
+      if (state.result.data[variation]) {
+        return state.result.data[variation]
+      }
     }
 
     return null

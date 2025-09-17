@@ -1,6 +1,6 @@
-import pdf from 'pdf-parse'
 import { fromBuffer } from 'pdf2pic'
 import { FileTypeDetectionService, PDFAnalysisResult } from './file-type-detection'
+import { parsePDF } from './pdf-parser'
 
 export interface PDFTextExtractionResult {
   success: boolean
@@ -32,7 +32,7 @@ export class PDFProcessingService {
       const buffer = Buffer.from(arrayBuffer)
 
       // Extract text using pdf-parse
-      const pdfData = await pdf(buffer)
+      const pdfData = await parsePDF(buffer)
 
       const processingTimeMs = Date.now() - startTime
 
@@ -307,7 +307,7 @@ export class PDFProcessingService {
       const buffer = Buffer.from(arrayBuffer)
 
       // Parse PDF to extract text
-      const pdfData = await pdf(buffer)
+      const pdfData = await parsePDF(buffer)
 
       const textLength = pdfData.text?.length || 0
       const pageCount = pdfData.numpages || 1
@@ -377,7 +377,7 @@ export class PDFProcessingService {
       }
 
       // Try to parse basic PDF structure
-      await pdf(buffer, { max: 1 }) // Just parse first page for validation
+      await parsePDF(buffer) // Validate parsing works
 
       return { isValid: true }
 

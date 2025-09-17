@@ -14,7 +14,7 @@ export class JobProcessor {
    */
   async triggerProcessing(): Promise<{ success: boolean; message: string }> {
     try {
-      const supabase = createServerClient()
+      const supabase = await createServerClient()
 
       // Get service role key for invoking Edge Functions
       const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
@@ -56,7 +56,7 @@ export class JobProcessor {
    */
   async checkAndProcessJobs(): Promise<{ success: boolean; message: string; jobsFound: number }> {
     try {
-      const supabase = createServerClient()
+      const supabase = await createServerClient()
 
       // Count pending jobs
       const { count, error } = await supabase
@@ -108,7 +108,7 @@ export class JobProcessor {
     totalToday: number
   }> {
     try {
-      const supabase = createServerClient()
+      const supabase = await createServerClient()
 
       // Get counts for each status
       const [queuedResult, processingResult, completedResult, failedResult, todayResult] = await Promise.all([
@@ -163,7 +163,7 @@ export class JobProcessor {
    */
   async retryFailedJobs(): Promise<{ retriedCount: number; message: string }> {
     try {
-      const supabase = createServerClient()
+      const supabase = await createServerClient()
 
       // Get failed jobs that can be retried
       const { data: failedJobs, error } = await supabase

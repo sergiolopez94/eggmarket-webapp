@@ -114,9 +114,9 @@ export interface Database {
           phone: string
           email: string
           status: 'active' | 'inactive'
-          license_expiry: string
-          carter_cert_expiry: string
-          insurance_expiry: string
+          license_expiry: string | null
+          carter_cert_expiry: string | null
+          insurance_expiry: string | null
           license_file_path: string | null
           carter_cert_file_path: string | null
           insurance_file_path: string | null
@@ -133,9 +133,9 @@ export interface Database {
           phone: string
           email: string
           status?: 'active' | 'inactive'
-          license_expiry: string
-          carter_cert_expiry: string
-          insurance_expiry: string
+          license_expiry?: string | null
+          carter_cert_expiry?: string | null
+          insurance_expiry?: string | null
           license_file_path?: string | null
           carter_cert_file_path?: string | null
           insurance_file_path?: string | null
@@ -152,9 +152,9 @@ export interface Database {
           phone?: string
           email?: string
           status?: 'active' | 'inactive'
-          license_expiry?: string
-          carter_cert_expiry?: string
-          insurance_expiry?: string
+          license_expiry?: string | null
+          carter_cert_expiry?: string | null
+          insurance_expiry?: string | null
           license_file_path?: string | null
           carter_cert_file_path?: string | null
           insurance_file_path?: string | null

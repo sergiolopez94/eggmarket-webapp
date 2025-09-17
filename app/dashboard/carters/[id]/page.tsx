@@ -27,6 +27,7 @@ import {
 } from 'lucide-react'
 import { toast } from 'react-hot-toast'
 import { getCarterById, updateCarter, type CarterWithStats } from '@/lib/supabase/carters'
+import { getDocumentPublicUrl } from '@/lib/supabase/storage'
 
 const carterSchema = z.object({
   name: z.string().min(1, 'First name is required'),
@@ -80,6 +81,8 @@ export default function CarterProfilePage() {
   const [certFiles, setCertFiles] = useState<File[]>([])
   const [insuranceFiles, setInsuranceFiles] = useState<File[]>([])
 
+  const [licenseImageUrl, setLicenseImageUrl] = useState<string | null>(null)
+
   const {
     register,
     handleSubmit,
@@ -108,6 +111,16 @@ export default function CarterProfilePage() {
           setValue('truckMake', carterData.truck_make || '')
           setValue('truckModel', carterData.truck_model || '')
           setValue('truckCapacity', carterData.truck_capacity || '')
+
+          // Load license image URL if license file exists
+          if (carterData.license_file_path) {
+            try {
+              const imageUrl = await getDocumentPublicUrl(carterData.license_file_path, 'license')
+              setLicenseImageUrl(imageUrl)
+            } catch (error) {
+              console.error('Failed to load license image:', error)
+            }
+          }
         }
       } catch (error) {
         console.error('Error loading carter:', error)
@@ -345,6 +358,25 @@ export default function CarterProfilePage() {
                   existingFile={carter.license_file_path}
                 />
               </div>
+
+              {/* License Image Display - spans across grid */}
+              {licenseImageUrl && (
+                <div className="space-y-2 md:col-span-2">
+                  <Label>License Image</Label>
+                  <div className="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                    <img
+                      src={licenseImageUrl}
+                      alt="Driver License"
+                      className="max-w-full h-auto max-h-96 mx-auto rounded border shadow-sm hover:shadow-md transition-shadow"
+                      onClick={() => window.open(licenseImageUrl, '_blank')}
+                      style={{ cursor: 'pointer' }}
+                    />
+                    <p className="text-sm text-gray-600 text-center mt-2">
+                      Click to view full size
+                    </p>
+                  </div>
+                </div>
+              )}
             </div>
           </CardContent>
         </Card>

@@ -72,3 +72,8 @@ create-*.js
 *-REFACTOR.md
 *-SETUP*.md
 BILLING-*.md
+
+# Production secrets and deployment files
+SUPABASE-PRODUCTION-SECRETS.md
+*SECRETS*.md
+*PRODUCTION*.md

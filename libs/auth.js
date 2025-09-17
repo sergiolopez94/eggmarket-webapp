@@ -1,11 +1,11 @@
 // Supabase-only authentication for Egg Market webapp
 // This replaces NextAuth with pure Supabase authentication
-import { createClient } from '@/lib/supabase/server'
+import { createServerClient } from '@/lib/supabase/server'
 import config from "@/config"
 
 // Simple auth helpers for compatibility with existing ShipFast components
 export const auth = async () => {
-  const supabase = createClient()
+  const supabase = await createServerClient()
   const { data: { user } } = await supabase.auth.getUser()
 
   if (!user) return null

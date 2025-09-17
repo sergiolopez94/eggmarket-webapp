@@ -33,23 +33,23 @@ function addComputedFields(carter: Carter): CarterWithStats {
   const expiringSoonDocuments: string[] = []
 
   // Check license expiry
-  if (isExpired(carter.license_expiry)) {
+  if (carter.license_expiry && isExpired(carter.license_expiry)) {
     expiredDocuments.push('license')
-  } else if (isExpiringSoon(carter.license_expiry)) {
+  } else if (carter.license_expiry && isExpiringSoon(carter.license_expiry)) {
     expiringSoonDocuments.push('license')
   }
 
   // Check carter cert expiry
-  if (isExpired(carter.carter_cert_expiry)) {
+  if (carter.carter_cert_expiry && isExpired(carter.carter_cert_expiry)) {
     expiredDocuments.push('carter_cert')
-  } else if (isExpiringSoon(carter.carter_cert_expiry)) {
+  } else if (carter.carter_cert_expiry && isExpiringSoon(carter.carter_cert_expiry)) {
     expiringSoonDocuments.push('carter_cert')
   }
 
   // Check insurance expiry
-  if (isExpired(carter.insurance_expiry)) {
+  if (carter.insurance_expiry && isExpired(carter.insurance_expiry)) {
     expiredDocuments.push('insurance')
-  } else if (isExpiringSoon(carter.insurance_expiry)) {
+  } else if (carter.insurance_expiry && isExpiringSoon(carter.insurance_expiry)) {
     expiringSoonDocuments.push('insurance')
   }
 

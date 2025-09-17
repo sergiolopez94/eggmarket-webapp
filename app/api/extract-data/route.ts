@@ -3,10 +3,10 @@ import { createServerClient } from '@/lib/supabase/server'
 import { uploadCarterDocumentServer, validateFileServer } from '@/lib/supabase/server-storage'
 import { FileTypeDetectionService } from '@/lib/services/file-type-detection'
 
-interface ExtractionRequest {
-  documentType: 'license' | 'carter_cert' | 'insurance'
-  carterId?: string
-}
+// interface ExtractionRequest {
+//   documentType: 'license' | 'carter_cert' | 'insurance'
+//   carterId?: string
+// }
 
 interface ExtractionResponse {
   success: boolean
@@ -169,13 +169,33 @@ export async function POST(request: NextRequest) {
 
     console.log('Extraction record created, preparing response')
 
+    // Automatically trigger job processing
+    try {
+      console.log('Triggering automatic job processing...')
+      const processingResponse = await fetch(`${request.nextUrl.origin}/api/admin/process-jobs`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+
+      if (processingResponse.ok) {
+        console.log('Automatic job processing triggered successfully')
+      } else {
+        console.log('Failed to trigger automatic processing, job will be processed manually')
+      }
+    } catch (triggerError) {
+      console.log('Failed to trigger automatic processing:', triggerError)
+      // Don't fail the request, the job is still queued and can be processed later
+    }
+
     const response: ExtractionResponse = {
       success: true,
       jobId: job.id,
       extractionId: extraction?.id || job.id,
       status: 'queued',
-      estimatedTime: processingStrategy.estimatedTime,
-      websocketUrl: `/api/extractions/stream?jobId=${job.id}`
+      estimatedTime: processingStrategy.estimatedTime
+      // websocketUrl removed to force polling-only approach
     }
 
     console.log('Returning successful response')
